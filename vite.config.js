@@ -11,14 +11,14 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src/js'),
-        '@components': path.resolve(__dirname, './src/js/components'),
-        '@pages': path.resolve(__dirname, './src/js/pages'),
+        '@': path.resolve(__dirname, './src'),
+        '@components': path.resolve(__dirname, './src/components'),
+        '@features': path.resolve(__dirname, './src/features'),
         '@styles': path.resolve(__dirname, './src/css')
       }
     },
     build: {
-      outDir: "./wwwroot/app/",
+      outDir: "dist",
       sourcemap: mode !== 'production',
       emptyOutDir: true,
       rollupOptions: {
