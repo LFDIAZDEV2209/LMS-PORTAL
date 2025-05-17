@@ -22,6 +22,8 @@ class NavBar extends HTMLElement {
                     <div class="flex items-center gap-6">
                         <div class="flex items-center">
                             <button class="bg-transparent border-0 text-white text-xl cursor-pointer p-2 rounded-full transition-all duration-300 ease-in-out hover:bg-gray-700">
+                                <i class="bi bi-moon-fill text-yellow-500"></i>
+                            </button>
                         </div>
                         <div>
                             <select class="bg-white/10 text-white border border-white/20 p-2 rounded cursor-pointer text-sm hover:bg-white/20 transition-all duration-300">
@@ -33,7 +35,7 @@ class NavBar extends HTMLElement {
                         </div>
                         <div class="relative">
                             <button class="flex items-center gap-3 bg-transparent border-0 text-white cursor-pointer p-2 rounded transition-all duration-300 ease-in-out hover:bg-gray-700">
-                                <img src="/assets/images/user.png" alt="User" class="w-8 h-8 rounded-full object-cover">
+                                <img src="/src/assets/user.jpg" alt="User" class="w-8 h-8 rounded-full object-cover">
                                 <span class="text-sm">John Doe</span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
