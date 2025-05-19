@@ -16,6 +16,7 @@ class NavBar extends HTMLElement {
                         <li><a href="/" data-link class="hover:underline">Dashboard</a></li>
                         <li><a href="/courses" data-link class="hover:underline">Courses</a></li>
                         <li><a href="/assignments" data-link class="hover:underline">Assignments</a></li>
+                        <li><a href="/progress" data-link class="hover:underline">Progress</a></li>
                         <li><a href="/profile" data-link class="hover:underline">Profile</a></li>
                         <li><a href="/admin" data-link class="hover:underline">Admin</a></li>
                     </ul>
