@@ -1,10 +1,10 @@
 # LMS-PORTAL
 
-[![GitHub repo size](https://img.shields.io/github/repo-size/LFDIAZDEV2209/LMS-PORTAL?style=for-the-badge&color=blueviolet)](https://github.com/LFDIAZDEV2209/LMS-PORTAL)
-[![GitHub issues](https://img.shields.io/github/issues/LFDIAZDEV2209/LMS-PORTAL?style=for-the-badge&color=informational)](https://github.com/LFDIAZDEV2209/LMS-PORTAL/issues)
-[![GitHub stars](https://img.shields.io/github/stars/LFDIAZDEV2209/LMS-PORTAL?style=for-the-badge&color=yellow)](https://github.com/LFDIAZDEV2209/LMS-PORTAL/stargazers)
-[![GitHub license](https://img.shields.io/github/license/LFDIAZDEV2209/LMS-PORTAL?style=for-the-badge&color=success)](https://github.com/LFDIAZDEV2209/LMS-PORTAL/blob/main/LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/LFDIAZDEV2209/LMS-PORTAL?style=for-the-badge&color=orange)](https://github.com/LFDIAZDEV2209/LMS-PORTAL/commits/main)
+[![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![Git Flow](https://img.shields.io/badge/Git_Flow-F05032?style=for-the-badge&logo=git&logoColor=white)](https://github.com/nvie/gitflow)
 
 ---
 
