@@ -10,8 +10,17 @@ class CoursesView extends HTMLElement {
   render() {
     this.innerHTML = `
       <div class="courses-view">
-        <h1 class="text-2xl font-bold text-center">Courses</h1>
-        <p class="text-center text-gray-500 text-lg">Aqui crean la vista de courses :D</p>
+        <div>
+          <h1 class='text-4xl'>Aviable Courses</h1>
+        </div>
+        <section>
+        <div>
+          <h2 class='text-2xl'>Video Games</h2>
+        </div>
+        <div class='' >
+
+        </div>
+        <section>
       </div>
     `;
   }
