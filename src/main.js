@@ -7,6 +7,7 @@ import './features/assignments/AssignmentsView.js';
 import './features/progress/ProgressView.js';
 import './features/profile/ProfileView.js';
 import './features/admin/AdminView.js';
+import './features/dashboard/components/app-dashboard.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Crear y agregar el layout principal

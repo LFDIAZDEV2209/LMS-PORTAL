@@ -9,9 +9,11 @@ class DashboardView extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="dashboard-view">
-        <h1 class="text-2xl font-bold text-center">Dashboard</h1>
-        <p class="text-center text-gray-500 text-lg">Aqui crean la vista de dashboard :D</p>
+      <div class=" item-center justify-center h-screen">
+        <div class="dashboard-view item-center justify-center mx-auto w-full max-w-4xl p-4">
+          <h1 class="text-2xl font-bold text-center">Dashboard</h1>
+          <dashboard-card></dashboard-card>
+        </div>
       </div>
     `;
   }
