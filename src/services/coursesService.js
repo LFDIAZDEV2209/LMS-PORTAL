@@ -33,18 +33,17 @@ const getCourseById = async (id) => {
 
 const getCourseByCategory = async (category) => {
     try {
-        const response = await fetch(`${API_URL}/cursos`)
+        const response = await fetch(`${API_URL}/cursos`);
         if (!response.ok) {
             throw new Error(`Error fetching courses: ${response.statusText}`);
         }
         const data = await response.json();
-        const filteredCourses = data.filter(course => course.categoria === category);
+        const filteredCourses = data.filter(course => course.category === category);
         return filteredCourses;
     } catch (error) {
         console.error('Error fetching courses:', error);
         throw error;
     }
-
 }
 
 const postCourse = async (course) => {
