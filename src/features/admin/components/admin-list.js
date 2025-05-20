@@ -30,7 +30,19 @@ class AdminList extends HTMLElement {
             }
         }
     });
-    }
+
+    this.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btnDelete')) {
+            const courseId = e.target.getAttribute('data-id');
+            const adminDelete = document.querySelector('admin-delete');
+            if (adminDelete) {
+                adminDelete.openModal(courseId);
+            } else {
+                console.error('No se encontró el componente admin-delete');
+            }
+        }
+    });
+}
 
     updatedCourse(updatedCourse) {
         const index = this.courses.findIndex(course => course.id === updatedCourse.id);
@@ -106,15 +118,26 @@ class AdminList extends HTMLElement {
     }
   }
 
+  async reloadCourses() {
+    try {
+        this.courses = await getCourses();
+        this.render();
+    } catch (error) {
+        console.error("Error reloading courses:", error);
+        this.renderError();
+    }
+  }
+
   render() {
+    if (this.courses.length === 0) {
+        this.innerHTML = this.renderEmptyState();
+        return;
+    }
+
     this.innerHTML = `
         <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-6 mt-6">
-        ${
-          this.courses.length === 0
-            ? this.renderEmptyState()
-            : this.renderCoursesList()
-        }
-      </div>
+            ${this.renderCoursesList()}
+        </div>
     `;
   }
 
@@ -131,7 +154,7 @@ class AdminList extends HTMLElement {
                     </div>
                     <div class="flex items-center space-x-3">
                     <i class="bi bi-pencil-square btnEdit text-gray-500 cursor-pointer hover:text-blue-500 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
-                    <i class="bi bi-trash btnDelete text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;"></i>
+                    <i class="bi bi-trash btnDelete text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
                     <span class="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">${course.category}</span>
                     </div>
                 </div>

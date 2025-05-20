@@ -85,9 +85,14 @@ const deleteCourse = async (id) => {
             method: 'DELETE',
             headers: myHeaders
         });
+        
+        // Verificar si la respuesta es exitosa
         if (!response.ok) {
             throw new Error(`Error deleting course: ${response.statusText}`);
         }
+        
+        // Si la eliminación fue exitosa, devolver true o el ID eliminado
+        return id;
     } catch (error) {
         console.error('Error deleting course:', error);
         throw error;
