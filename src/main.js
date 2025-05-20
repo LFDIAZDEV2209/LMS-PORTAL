@@ -3,6 +3,7 @@ import './components/AppLayout.js';
 import './ui/nav-bar.js';
 import './features/dashboard/DashboardView.js';
 import './features/courses/CoursesView.js';
+import './features/courses/CoursesDetails.js';
 import './features/assignments/AssignmentsView.js';
 import './features/progress/ProgressView.js';
 import './features/profile/ProfileView.js';
