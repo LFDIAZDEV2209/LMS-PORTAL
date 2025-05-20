@@ -80,65 +80,65 @@ class CoursesDetails extends HTMLElement {
                 </a>
 
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-                    <div class="relative h-64 md:h-80">
-                        <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" alt="${this.course.title}">
+                    <div class="relative h-64 md:h-80 flex items-end">
+                        <img class="w-full h-full object-cover absolute inset-0" src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" alt="${this.course.title}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                         <div class="absolute bottom-0 left-0 p-6 md:p-8 text-white">
-                            <h1 class="text-3xl md:text-4xl font-bold mb-2">${this.course.title}</h1>
-                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="flex items-center px-3 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-sm">
+                         <div class="relative z-10 p-4 md:p-6 text-white w-full flex flex-col justify-end">
+                            <h1 class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">${this.course.title}</h1>
+                             <div class="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
+                                <span class="flex items-center px-2 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-xs md:text-sm">
                                     <i class="bi bi-clock mr-1"></i>
                                     ${this.course.duration}
                                 </span>
-                                <span class="px-3 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-sm">${this.course.level}</span>
-                                <span class="px-3 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-sm">${this.course.enrolled}+ enrolled</span>
+                                <span class="px-2 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-xs md:text-sm">${this.course.level}</span>
+                                <span class="px-2 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-xs md:text-sm">${this.course.enrolled}+ enrolled</span>
                              </div>
-                            <p class="text-gray-200">${this.course.overview}</p>
+                            <p class="text-sm md:text-base text-gray-200 mb-4 md:mb-6">${this.course.overview}</p>
+                             <div class="flex items-center">
+                                 <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-50 flex items-center justify-center text-lg md:text-xl mr-2 md:mr-4">
+                                     <i class="bi bi-person-circle text-amber-300"></i>
+                                 </div>
+                                 <div>
+                                     <h4 class="text-xs md:text-sm font-medium text-gray-200">Course Instructor</h4>
+                                     <p class="text-sm md:text-base text-gray-500 font-medium">${this.course.instructor}</p>
+                                 </div>
+                             </div>
                          </div>
                     </div>
 
-                    <div class="p-6 md:p-8">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xl mr-4">
-                                <i class="bi bi-person-circle"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-500">Instructor del Curso</h4>
-                                <p class="text-gray-900 font-medium">${this.course.instructor}</p>
-                            </div>
-                        </div>
+                    <div class="p-6 md:p-8 hidden">
                     </div>
                 </div>
 
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="flex-1 space-y-6">
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">Descripción</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Course Overview</h3>
                             <p class="text-gray-600">${this.course.overview}</p>
                         </div>
 
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">Prerrequisitos</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Prerequisites</h3>
                             <ul class="list-disc list-inside space-y-2 text-gray-600">
                                 ${this.course.prerequisites.map(prereq => `<li>${prereq}</li>`).join('')}
                             </ul>
                         </div>
 
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">Resultados de Aprendizaje</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">What You'll Learn</h3>
                             <ul class="list-disc list-inside space-y-2 text-gray-600">
                                 ${this.course.learningOutcomes.map(outcome => `<li>${outcome}</li>`).join('')}
                             </ul>
                         </div>
 
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">Estructura del Curso</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Course Structure</h3>
                             <div class="space-y-4">
                                 ${this.course.modules.map((module, index) => `
                                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                                         <div class="module-header flex justify-between items-center p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors">
                                             <div>
-                                                <span class="text-sm font-medium text-gray-500">Módulo ${index + 1}</span>
+                                                <span class="text-sm font-medium text-blue-600">Módule ${index + 1}</span>
                                                 <span class="block font-medium text-gray-900">${module.title}</span>
                                             </div>
                                             <span class="module-toggle text-gray-400">
@@ -158,32 +158,32 @@ class CoursesDetails extends HTMLElement {
 
                     <div class="lg:w-80">
                         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25">
-                            <div class="mb-4">
+                            <div class="mb-4 flex flex-col items-center">
                                 <span class="block text-3xl font-bold text-gray-900">$99.99</span>
-                                <span class="text-gray-500">Pago único</span>
+                                <span class="text-gray-500">One-time payment</span>
                             </div>
 
                             <ul class="space-y-3 mb-6">
                                 <li class="flex items-center text-gray-700">
-                                    <i class="bi bi-check-circle-fill text-green-500 mr-2"></i>
-                                    Acceso de por vida
+                                    <i class="bi bi-check text-2xl mr-2"></i>
+                                    Lifetime access
                                 </li>
                                 <li class="flex items-center text-gray-700">
-                                    <i class="bi bi-check-circle-fill text-green-500 mr-2"></i>
-                                    Certificado de finalización
+                                    <i class="bi bi-check text-2xl mr-2"></i>
+                                    Certificate of completion
                                 </li>
                                 <li class="flex items-center text-gray-700">
-                                    <i class="bi bi-check-circle-fill text-green-500 mr-2"></i>
-                                    Garantía de devolución de 30 días
+                                    <i class="bi bi-check text-2xl mr-2"></i>
+                                    30-day money-back guarantee
                                 </li>
                                 <li class="flex items-center text-gray-700">
-                                    <i class="bi bi-check-circle-fill text-green-500 mr-2"></i>
-                                    Soporte directo del instructor
+                                    <i class="bi bi-check text-2xl mr-2"></i>
+                                    Direct instructor support
                                 </li>
                             </ul>
 
                             <button class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                                Comenzar a Aprender
+                                Start Learning
                             </button>
                         </div>
                     </div>
@@ -193,5 +193,4 @@ class CoursesDetails extends HTMLElement {
     }
 }
 
-// Asegurarnos de que el nombre del componente coincida exactamente con el de la ruta
 customElements.define('courses-details', CoursesDetails);
