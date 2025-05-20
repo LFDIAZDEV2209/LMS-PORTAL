@@ -24,6 +24,7 @@ class AdminView extends HTMLElement {
         <admin-list></admin-list>
         <admin-edit></admin-edit>
         <admin-delete></admin-delete>
+        <admin-add></admin-add>
       </div>
     `;
   }

@@ -40,7 +40,7 @@ class AdminHeader extends HTMLElement {
         <div class="w-full max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-sm border-gray-100">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Administración de Cursos</h1>
         
-        <div class="relative mb-6">
+        <div class="relative mb-6 flex items-center">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <i class="bi bi-search text-gray-500"></i>
           </div>
@@ -49,6 +49,9 @@ class AdminHeader extends HTMLElement {
             placeholder="Buscar curso"
             class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none"
           />
+          <button id="addCourseBtn" class="ml-4 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
+                <i class="bi bi-plus text-xl"></i>
+            </button>
         </div>
 
         <div class="mb-6 text-center">
