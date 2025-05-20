@@ -3,18 +3,31 @@ class AdminView extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.render();
+    this.setUpEventListeners();
+  }
+
+  setUpEventListeners() {
+    this.querySelector('admin-header').addEventListener('search', (e) => {
+      this.querySelector('admin-list').setAttribute('search', e.detail);
+    });
+    this.querySelector('admin-header').addEventListener('filter', (e) => {
+      this.querySelector('admin-list').setAttribute('filter', e.detail);
+    });
   }
 
   render() {
     this.innerHTML = `
       <div class="admin-view">
-        <h1 class="text-2xl font-bold text-center">Admin</h1>
-        <p class="text-center text-gray-500 text-lg">Aqui crean la vista de admin :D</p>
+        <admin-header></admin-header>
+        <admin-list></admin-list>
+        <admin-edit></admin-edit>
+        <admin-delete></admin-delete>
+        <admin-add></admin-add>
       </div>
     `;
   }
 }
 
-customElements.define('admin-view', AdminView); 
+customElements.define("admin-view", AdminView);
