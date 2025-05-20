@@ -1,5 +1,6 @@
 import { getCourses } from "../../../services/coursesService.js";
 import { getCourseByCategory } from "../../../services/coursesService.js";
+import { getCourseById } from "../../../services/coursesService.js";
 
 class AdminList extends HTMLElement {
   constructor() {
@@ -10,7 +11,34 @@ class AdminList extends HTMLElement {
   async connectedCallback() {
     await this.loadCourses();
     this.render();
+    this.setUpEventListeners();
   }
+
+    setUpEventListeners() {
+        this.addEventListener('course-updated', (e) => {
+        this.updatedCourse(e.detail);
+    });
+
+    this.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btnEdit')) {
+            const courseId = e.target.getAttribute('data-id');
+            const adminEdit = document.querySelector('admin-edit');
+            if (adminEdit) {
+                adminEdit.openModal(courseId);
+            } else {
+                console.error('No se encontró el componente admin-edit');
+            }
+        }
+    });
+    }
+
+    updatedCourse(updatedCourse) {
+        const index = this.courses.findIndex(course => course.id === updatedCourse.id);
+        if (index !== -1) {
+            this.courses[index] = updatedCourse; // Actualiza el curso en la lista
+            this.render(); // Vuelve a renderizar la lista
+        }
+    }
 
   static get observedAttributes() {
     return ["search", "filter"];
@@ -102,8 +130,8 @@ class AdminList extends HTMLElement {
                     <h3 class="font-medium text-gray-800">${course.title}</h3>
                     </div>
                     <div class="flex items-center space-x-3">
-                    <i class="bi bi-pencil-square text-gray-500 cursor-pointer hover:text-blue-500 transition duration-200" style="font-size: 1.25rem;"></i>
-                    <i class="bi bi-trash text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;"></i>
+                    <i class="bi bi-pencil-square btnEdit text-gray-500 cursor-pointer hover:text-blue-500 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
+                    <i class="bi bi-trash btnDelete text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;"></i>
                     <span class="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">${course.category}</span>
                     </div>
                 </div>
@@ -112,7 +140,7 @@ class AdminList extends HTMLElement {
                 )
                 .join("")}
         </ul>
-        `;
+    `;
   }
 }
 

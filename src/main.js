@@ -9,6 +9,7 @@ import './features/profile/ProfileView.js';
 import './features/admin/AdminView.js';
 import './features/admin/components/admin-header.js';
 import './features/admin/components/admin-list.js';
+import './features/admin/components/admin-edit.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Crear y agregar el layout principal
