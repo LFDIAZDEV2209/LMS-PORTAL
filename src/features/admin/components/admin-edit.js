@@ -26,7 +26,6 @@ class AdminEdit extends HTMLElement {
 
   async openModal(courseId) {
     try {
-      console.log("Opening modal for course:", courseId);
       this.course = await getCourseById(courseId);
 
       if (!this.course) {
@@ -34,13 +33,11 @@ class AdminEdit extends HTMLElement {
         return;
       }
 
-      console.log("Course data:", this.course);
       this.populateFields();
 
       const modalContainer = this.querySelector(".modal-backdrop");
       if (modalContainer) {
         modalContainer.classList.remove("hidden");
-        // Add animation classes
         setTimeout(() => {
           modalContainer.classList.add("opacity-100");
           this.querySelector(".modal-content").classList.add(
@@ -61,11 +58,9 @@ class AdminEdit extends HTMLElement {
     const modalContent = this.querySelector(".modal-content");
 
     if (modalContainer && modalContent) {
-      // Add closing animations
       modalContainer.classList.remove("opacity-100");
       modalContent.classList.remove("translate-y-0", "opacity-100");
 
-      // Wait for animation to complete before hiding
       setTimeout(() => {
         modalContainer.classList.add("hidden");
       }, 300);
@@ -78,16 +73,22 @@ class AdminEdit extends HTMLElement {
       return;
     }
 
-    // Asegurarse de que cada campo exista antes de intentar acceder a él
+    this.querySelector("#title").value = this.course.title || "";
     this.querySelector("#category").value = this.course.category || "";
-    this.querySelector("#overview").value = this.course.overview || "";
+    this.querySelector("#level").value = this.course.level || "";
     this.querySelector("#duration").value = this.course.duration || "";
-    this.querySelector("#tags").value = Array.isArray(this.course.tags)
-      ? this.course.tags.join(", ")
-      : "";
-    this.querySelector("#visibility").value =
-      this.course.visibility || "public";
+    this.querySelector("#overview").value = this.course.overview || "";
+    this.querySelector("#imageUrl").value = this.course.imageUrl || "";
     this.querySelector("#instructor").value = this.course.instructor || "";
+    this.querySelector("#prerequisites").value = Array.isArray(this.course.prerequisites) 
+      ? this.course.prerequisites.join("\n") 
+      : "";
+    this.querySelector("#learningOutcomes").value = Array.isArray(this.course.learningOutcomes)
+      ? this.course.learningOutcomes.join("\n")
+      : "";
+    this.querySelector("#lessons").value = this.course.structure?.lessons || "";
+    this.querySelector("#projects").value = this.course.structure?.projects || "";
+    this.querySelector("#assignments").value = this.course.structure?.assignments || "";
   }
 
   async saveChanges() {
@@ -97,16 +98,28 @@ class AdminEdit extends HTMLElement {
     }
 
     const updatedCourse = {
-      ...this.course, // Mantener los datos existentes
+      ...this.course,
+      title: this.querySelector("#title").value,
       category: this.querySelector("#category").value,
-      overview: this.querySelector("#overview").value,
+      level: this.querySelector("#level").value,
       duration: this.querySelector("#duration").value,
-      tags: this.querySelector("#tags")
-        .value.split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag),
-      visibility: this.querySelector("#visibility").value,
+      overview: this.querySelector("#overview").value,
+      imageUrl: this.querySelector("#imageUrl").value,
       instructor: this.querySelector("#instructor").value,
+      prerequisites: this.querySelector("#prerequisites")
+        .value.split("\n")
+        .map(item => item.trim())
+        .filter(item => item),
+      learningOutcomes: this.querySelector("#learningOutcomes")
+        .value.split("\n")
+        .map(item => item.trim())
+        .filter(item => item),
+      structure: {
+        lessons: parseInt(this.querySelector("#lessons").value) || 0,
+        projects: parseInt(this.querySelector("#projects").value) || 0,
+        assignments: parseInt(this.querySelector("#assignments").value) || 0,
+        capstoneProject: this.course.structure?.capstoneProject || 1
+      }
     };
 
     try {
@@ -126,72 +139,102 @@ class AdminEdit extends HTMLElement {
 
   render() {
     this.innerHTML = `
-        <div class="modal-backdrop fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
-            <div class="modal-content bg-white rounded-xl shadow-xl w-full max-w-md transform -translate-y-4 opacity-0 transition-all duration-300 ease-in-out">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-xl font-bold text-gray-800">Editar Curso</h2>
-                        <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <form id="editForm" class="space-y-5">
-                        <div>
-                            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                            <input type="text" id="category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                        </div>
-                        
-                        <div>
-                            <label for="overview" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
-                            <textarea id="overview" rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none"></textarea>
-                        </div>
-                        
-                        <div>
-                            <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Duración</label>
-                            <input type="text" id="duration" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                        </div>
-                        
-                        <div>
-                            <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">Etiquetas</label>
-                            <div class="relative">
-                                <input type="text" id="tags" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                <div class="absolute right-2 top-2 text-xs text-gray-400">Separadas por comas</div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="visibility" class="block text-sm font-medium text-gray-700 mb-1">Visibilidad</label>
-                            <select id="visibility" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none appearance-none">
-                                <option value="public">Público</option>
-                                <option value="private">Privado</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="instructor" class="block text-sm font-medium text-gray-700 mb-1">Asignar Docente</label>
-                            <input type="text" id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                        </div>
-                        
-                        <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
-                            <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
-                                Cancelar
-                            </button>
-                            <button type="button" id="saveChanges" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
-                                Guardar Cambios
-                            </button>
-                        </div>
-                    </form>
-                </div>
+      <div class="modal-backdrop fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300 p-4">
+        <div class="modal-content bg-white rounded-xl shadow-xl w-full max-w-2xl transform -translate-y-4 opacity-0 transition-all duration-300 ease-in-out max-h-[90vh] flex flex-col">
+          <div class="p-6 flex-shrink-0">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-xl font-bold text-gray-800">Editar Curso</h2>
+              <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
             </div>
+          </div>
+          
+          <div class="flex-1 overflow-y-auto px-6">
+            <form id="editForm" class="space-y-4 pb-4">
+              <div>
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <input type="text" id="title" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+              </div>
+
+              <div>
+                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                <input type="text" id="category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+              </div>
+
+              <div>
+                <label for="level" class="block text-sm font-medium text-gray-700 mb-1">Nivel</label>
+                <select id="level" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                  <option value="Beginner">Principiante</option>
+                  <option value="Intermediate">Intermedio</option>
+                  <option value="Advanced">Avanzado</option>
+                  <option value="All Levels">Todos los niveles</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Duración</label>
+                <input type="text" id="duration" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+              </div>
+
+              <div>
+                <label for="overview" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                <textarea id="overview" rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none"></textarea>
+              </div>
+
+              <div>
+                <label for="imageUrl" class="block text-sm font-medium text-gray-700 mb-1">URL de la imagen</label>
+                <input type="text" id="imageUrl" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+              </div>
+
+              <div>
+                <label for="instructor" class="block text-sm font-medium text-gray-700 mb-1">Instructor</label>
+                <input type="text" id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+              </div>
+
+              <div>
+                <label for="prerequisites" class="block text-sm font-medium text-gray-700 mb-1">Prerrequisitos</label>
+                <textarea id="prerequisites" rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none" placeholder="Un prerrequisito por línea"></textarea>
+              </div>
+
+              <div>
+                <label for="learningOutcomes" class="block text-sm font-medium text-gray-700 mb-1">Resultados de aprendizaje</label>
+                <textarea id="learningOutcomes" rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none" placeholder="Un resultado por línea"></textarea>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4">
+                <div>
+                  <label for="lessons" class="block text-sm font-medium text-gray-700 mb-1">Lecciones</label>
+                  <input type="number" id="lessons" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                </div>
+                
+                <div>
+                  <label for="projects" class="block text-sm font-medium text-gray-700 mb-1">Proyectos</label>
+                  <input type="number" id="projects" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                </div>
+                
+                <div>
+                  <label for="assignments" class="block text-sm font-medium text-gray-700 mb-1">Tareas</label>
+                  <input type="number" id="assignments" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <div class="flex-shrink-0 p-6 border-t border-gray-100">
+            <div class="flex justify-end space-x-3">
+              <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
+                Cancelar
+              </button>
+              <button type="button" id="saveChanges" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     `;
   }
 }

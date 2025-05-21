@@ -56,6 +56,15 @@ class AdminAdd extends HTMLElement {
     }
 
     async saveCourse() {
+        const imageUrl = this.querySelector("#imageUrl").value || "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg";
+        const imageFile = this.querySelector("#imageFile").files[0];
+        
+        let finalImageUrl = imageUrl;
+        
+        if (imageFile) {
+            console.log("Imagen seleccionada:", imageFile.name);
+        }
+
         const courseData = {
             category: this.querySelector("#category").value,
             title: this.querySelector("#title").value,
@@ -71,34 +80,13 @@ class AdminAdd extends HTMLElement {
                 assignments: parseInt(this.querySelector("#assignments").value),
                 capstoneProject: parseInt(this.querySelector("#capstoneProject").value)
             },
-            modules: [
-                {
-                    id: 1,
-                    title: "Introduction to the Course",
-                    topics: this.querySelector("#introTopics").value.split(',').map(item => item.trim())
-                },
-                {
-                    id: 2,
-                    title: "Fundamentals and Core Concepts",
-                    topics: this.querySelector("#fundamentalsTopics").value.split(',').map(item => item.trim())
-                },
-                {
-                    id: 3,
-                    title: "Advanced Topics",
-                    topics: this.querySelector("#advancedTopics").value.split(',').map(item => item.trim())
-                },
-                {
-                    id: 4,
-                    title: "Project Work",
-                    topics: this.querySelector("#projectTopics").value.split(',').map(item => item.trim())
-                }
-            ]
+            imageUrl: finalImageUrl
         };
 
         try {
             await postCourse(courseData);
             this.closeModal();
-            window.location.reload(); // Recargar para mostrar el nuevo curso
+            window.location.reload();
         } catch (error) {
             console.error("Error saving course:", error);
             alert('Error al crear el curso. Por favor, intente nuevamente.');
@@ -107,7 +95,7 @@ class AdminAdd extends HTMLElement {
 
     render() {
         this.innerHTML = `
-            <div class="modal-backdrop fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+            <div class="modal-backdrop fixed inset-0 bg-slate-200 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
                 <div class="modal-content bg-white rounded-xl shadow-xl w-full max-w-4xl my-8 transform -translate-y-4 opacity-0 transition-all duration-300 ease-in-out">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
@@ -127,6 +115,7 @@ class AdminAdd extends HTMLElement {
                                         <option value="Frontend">Frontend</option>
                                         <option value="Backend">Backend</option>
                                         <option value="Schools">Schools</option>
+                                        <option value="Video Games">Video Games</option>
                                     </select>
                                 </div>
                                 
@@ -141,6 +130,7 @@ class AdminAdd extends HTMLElement {
                                         <option value="Beginner">Principiante</option>
                                         <option value="Intermediate">Intermedio</option>
                                         <option value="Advanced">Avanzado</option>
+                                        <option value="All Levels">Todos los niveles</option>
                                     </select>
                                 </div>
 
@@ -152,6 +142,22 @@ class AdminAdd extends HTMLElement {
                                 <div class="col-span-2">
                                     <label for="overview" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
                                     <textarea id="overview" rows="2" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none"></textarea>
+                                </div>
+
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Imagen del Curso</label>
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex-1">
+                                            <input type="text" id="imageUrl" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" placeholder="URL de la imagen" />
+                                        </div>
+                                        <div class="relative">
+                                            <input type="file" id="imageFile" accept="image/*" class="hidden" />
+                                            <label for="imageFile" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 cursor-pointer transition-colors duration-200">
+                                                <i class="bi bi-upload mr-2"></i>Subir imagen
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="mt-1 text-xs text-gray-500">Ingresa una URL o sube una imagen desde tu PC</p>
                                 </div>
 
                                 <div>
@@ -187,28 +193,6 @@ class AdminAdd extends HTMLElement {
                                         <div>
                                             <label for="capstoneProject" class="block text-sm font-medium text-gray-700 mb-1">Proyecto Final</label>
                                             <input type="number" id="capstoneProject" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2">
-                                    <h3 class="text-lg font-medium text-gray-900 mb-2">Módulos del Curso</h3>
-                                    <div class="space-y-3">
-                                        <div>
-                                            <label for="introTopics" class="block text-sm font-medium text-gray-700 mb-1">Temas de Introducción</label>
-                                            <input type="text" id="introTopics" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" placeholder="Separados por comas" />
-                                        </div>
-                                        <div>
-                                            <label for="fundamentalsTopics" class="block text-sm font-medium text-gray-700 mb-1">Temas Fundamentales</label>
-                                            <input type="text" id="fundamentalsTopics" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" placeholder="Separados por comas" />
-                                        </div>
-                                        <div>
-                                            <label for="advancedTopics" class="block text-sm font-medium text-gray-700 mb-1">Temas Avanzados</label>
-                                            <input type="text" id="advancedTopics" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" placeholder="Separados por comas" />
-                                        </div>
-                                        <div>
-                                            <label for="projectTopics" class="block text-sm font-medium text-gray-700 mb-1">Temas del Proyecto</label>
-                                            <input type="text" id="projectTopics" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" placeholder="Separados por comas" />
                                         </div>
                                     </div>
                                 </div>
