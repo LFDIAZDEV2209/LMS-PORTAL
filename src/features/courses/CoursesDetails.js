@@ -1,4 +1,4 @@
-import { getCourseById } from "../../services/coursesService.js";
+import { getCourseWithModules } from "../../services/coursesService.js";
 
 class CoursesDetails extends HTMLElement {
     constructor() {
@@ -33,7 +33,7 @@ class CoursesDetails extends HTMLElement {
             
             if (courseId) {
                 console.log('Intentando cargar curso con ID:', courseId);
-                this.course = await getCourseById(courseId);
+                this.course = await getCourseWithModules(courseId);
                 console.log('Curso cargado exitosamente:', this.course);
             } else {
                 console.error('No se encontró ID en la URL');
