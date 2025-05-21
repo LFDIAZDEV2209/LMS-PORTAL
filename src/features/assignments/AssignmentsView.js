@@ -1,4 +1,5 @@
 import { getCourses, getCourseTasks } from '../../services/coursesService.js';
+import './components/assignment-submit.js';
 
 class AssignmentsView extends HTMLElement {
   constructor() {
@@ -102,6 +103,7 @@ class AssignmentsView extends HTMLElement {
           </div>
         `).join('')}
       </div>
+      <assignment-submit></assignment-submit>
     `;
   }
 
@@ -191,7 +193,7 @@ class AssignmentsView extends HTMLElement {
       case 'pending':
         return `
           <div class="flex justify-end px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+            <button class="open-submit-modal flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
               <i class="bi bi-upload mr-2 text-white"></i> Submit Assignment
             </button>
           </div>
