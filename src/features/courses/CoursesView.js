@@ -65,8 +65,10 @@ class CoursesView extends HTMLElement {
   }
 
   renderCourseCard(course) {
+    console.log('ID de la tarjeta:', course.id); 
     return `
       <div class="rounded-lg overflow-hidden bg-white shadow hover:shadow-lg transition-transform hover:-translate-y-1 w-full sm:w-[370px] mx-auto">
+      <div class="hidden course-id">${course.id}</div>
       <div class="relative h- overflow-hidden">
         <img src="${course.imageUrl}" alt="${course.title}" class="w-full h-[200px] object-cover">
         <div class="absolute top-3 left-3 bg-black bg-opacity-60 text-white text-base px-3 py-2 rounded-full">${course.level}</div>
@@ -76,19 +78,21 @@ class CoursesView extends HTMLElement {
             <polyline points="12 6 12 12 16 14" />
           </svg>
           ${course.duration}
+
         </div>
       </div>
       <div class="p-4">
         <h3 class="text-lg font-semibold text-gray-800 mb-2">${course.title}</h3>
         <p class="text-sm text-gray-600 mb-4">${course.overview}</p>
         <div class="flex gap-3 justify-around">
-          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">Enroll Now</button>
+          <a  href="/courses-details?id=${course.id}" data-link class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">Enroll Now</a>
           <button class="border border-blue-500 text-blue-500 hover:bg-gray-100 px-4 py-2 rounded text-sm font-medium">More Info</button>
         </div>
       </div>
     </div>
     `;
   }
+  
 }
 
 customElements.define('courses-view', CoursesView);
