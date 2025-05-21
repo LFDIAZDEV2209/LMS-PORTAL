@@ -1,7 +1,5 @@
 const API_URL = 'http://localhost:3000';
 
-
-
 class CoursesView extends HTMLElement {
   constructor() {
     super();
@@ -28,20 +26,17 @@ class CoursesView extends HTMLElement {
         return;
       }
 
-      let html = '';
+      let html = '<div> <h1 class="pb-4 text-5xl w-full mb-8 ">Available Courses</h1><div>';
 
       if (category) {
-        // Renderizar solo una categoría
         html += `
-        <div class="p-5 w-full h-15">
-          
-          <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">${category}</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pl-5 pr-5">
-              ${courses.map(course => this.renderCourseCard(course)).join('')}
-            </div>
-          </section>
-        </div>
+      
+        <section class="mb-12">
+          <h2 class="text-2xl mb-20 w-full">${cat}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            ${grouped[cat].map(course => this.renderCourseCard(course)).join('')}
+          </div>
+        </section>
         `;
       } else {
         // Agrupar por categoría
@@ -53,10 +48,9 @@ class CoursesView extends HTMLElement {
 
         for (const cat in grouped) {
           html += `
-          
-            <section class="mb-8">
-              <h2 class="text-2xl font-bold pl-15 pr-15 mb-4">${cat}</h2>
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <section class="mb-12">
+              <h2 class="text-2xl font-bold pm-4 mb-5">${cat}</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 items-center overflow-hidden">
                 ${grouped[cat].map(course => this.renderCourseCard(course)).join('')}
               </div>
             </section>
@@ -72,27 +66,27 @@ class CoursesView extends HTMLElement {
 
   renderCourseCard(course) {
     return `
-      <div class="rounded-lg overflow-hidden bg-white shadow hover:shadow-lg transition-transform hover:-translate-y-1 pl-10 pr-5">
-        <div class="relative h-40 overflow-hidden">
-          <img src="${course.imageUrl}" alt="${course.title}" class="w-full h-full object-cover">
-          <div class="absolute top-3 left-3 bg-black bg-opacity-60 text-white text-sm px-3 py-1 rounded-full">${course.level}</div>
-          <div class="absolute top-3 right-3 bg-black bg-opacity-60 text-white text-sm px-3 py-1 rounded-full flex items-center">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            ${course.duration}
-          </div>
-        </div>
-        <div class="p-4">
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">${course.title}</h3>
-          <p class="text-sm text-gray-600 mb-4">${course.overview}</p>
-          <div class="flex gap-3">
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">Enroll Now</button>
-            <button class="border border-blue-500 text-blue-500 hover:bg-gray-100 px-4 py-2 rounded text-sm font-medium">More Info</button>
-          </div>
+      <div class="rounded-lg overflow-hidden bg-white shadow hover:shadow-lg transition-transform hover:-translate-y-1 w-full sm:w-[370px] mx-auto">
+      <div class="relative h- overflow-hidden">
+        <img src="${course.imageUrl}" alt="${course.title}" class="w-full h-[200px] object-cover">
+        <div class="absolute top-3 left-3 bg-black bg-opacity-60 text-white text-base px-3 py-2 rounded-full">${course.level}</div>
+        <div class="absolute top-3 right-3 bg-black bg-opacity-60 text-white text-base px-3 py-2 rounded-full flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          ${course.duration}
         </div>
       </div>
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">${course.title}</h3>
+        <p class="text-sm text-gray-600 mb-4">${course.overview}</p>
+        <div class="flex gap-3 justify-around">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">Enroll Now</button>
+          <button class="border border-blue-500 text-blue-500 hover:bg-gray-100 px-4 py-2 rounded text-sm font-medium">More Info</button>
+        </div>
+      </div>
+    </div>
     `;
   }
 }
