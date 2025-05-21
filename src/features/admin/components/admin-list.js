@@ -5,6 +5,8 @@ class AdminList extends HTMLElement {
   constructor() {
     super();
     this.courses = [];
+    this.currentPage = 1;
+    this.coursesPerPage = 3;
   }
 
   async connectedCallback() {
@@ -28,9 +30,6 @@ class AdminList extends HTMLElement {
           console.error('No se encontró el componente admin-edit');
         }
       }
-    });
-
-    this.addEventListener('click', (e) => {
       if (e.target.classList.contains('btnDelete')) {
         const courseId = e.target.getAttribute('data-id');
         const adminDelete = document.querySelector('admin-delete');
@@ -38,6 +37,13 @@ class AdminList extends HTMLElement {
           adminDelete.openModal(courseId);
         } else {
           console.error('No se encontró el componente admin-delete');
+        }
+      }
+      if (e.target.classList.contains('pagination-btn')) {
+        const page = parseInt(e.target.getAttribute('data-page'));
+        if (!isNaN(page)) {
+          this.currentPage = page;
+          this.render();
         }
       }
     });
@@ -57,6 +63,7 @@ class AdminList extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
+      this.currentPage = 1; // Reiniciar página al filtrar
       this.applyFilters();
     }
   }
@@ -108,6 +115,7 @@ class AdminList extends HTMLElement {
         );
       }
 
+      this.currentPage = 1; // Reiniciar página al filtrar
       this.render();
     } catch (error) {
       console.error("Error applying filters:", error);
@@ -118,6 +126,7 @@ class AdminList extends HTMLElement {
   async loadCourses() {
     try {
       this.courses = await getCourses();
+      this.currentPage = 1; // Reiniciar página al cargar
       this.render();
     } catch (error) {
       console.error("Error loading courses:", error);
@@ -128,6 +137,7 @@ class AdminList extends HTMLElement {
   async reloadCourses() {
     try {
       this.courses = await getCourses();
+      this.currentPage = 1; // Reiniciar página al recargar
       this.render();
     } catch (error) {
       console.error("Error reloading courses:", error);
@@ -141,17 +151,40 @@ class AdminList extends HTMLElement {
       return;
     }
 
-    this.innerHTML = `
-      <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-6 mt-6">
-        ${this.renderCoursesList()}
-      </div>
-    `;
+    // Animación: fade out antes de renderizar
+    const listContainer = this.querySelector('.admin-list-anim');
+    if (listContainer) {
+      listContainer.classList.remove('opacity-100');
+      listContainer.classList.add('opacity-0');
+    }
+
+    setTimeout(() => {
+      this.innerHTML = `
+        <div class="admin-list-anim bg-white rounded-lg border border-gray-100 shadow-sm p-6 mt-6 opacity-0 transition-opacity duration-300 ease-in-out">
+          ${this.renderCoursesList()}
+          ${this.renderPagination()}
+        </div>
+      `;
+      // Animación: fade in después de renderizar
+      setTimeout(() => {
+        const newListContainer = this.querySelector('.admin-list-anim');
+        if (newListContainer) {
+          newListContainer.classList.remove('opacity-0');
+          newListContainer.classList.add('opacity-100');
+        }
+      }, 10);
+    }, 200);
   }
 
   renderCoursesList() {
+    // Paginación
+    const startIdx = (this.currentPage - 1) * this.coursesPerPage;
+    const endIdx = startIdx + this.coursesPerPage;
+    const paginatedCourses = this.courses.slice(startIdx, endIdx);
+
     return `
       <ul class="divide-y divide-gray-100">
-        ${this.courses
+        ${paginatedCourses
           .map(
             (course) => `
             <li class="p-4 hover:bg-gray-50 transition-colors duration-150">
@@ -187,6 +220,20 @@ class AdminList extends HTMLElement {
           )
           .join("")}
       </ul>
+    `;
+  }
+
+  renderPagination() {
+    const totalPages = Math.ceil(this.courses.length / this.coursesPerPage);
+    if (totalPages <= 1) return '';
+    let buttons = '';
+    for (let i = 1; i <= totalPages; i++) {
+      buttons += `<button class="pagination-btn px-3 py-1 mx-1 rounded-lg border ${i === this.currentPage ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}" data-page="${i}">${i}</button>`;
+    }
+    return `
+      <div class="flex justify-center mt-6">
+        ${buttons}
+      </div>
     `;
   }
 }
