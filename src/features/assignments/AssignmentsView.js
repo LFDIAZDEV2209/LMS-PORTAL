@@ -8,6 +8,7 @@ class AssignmentsView extends HTMLElement {
       tasksByCourse: {},
       loading: true,
     };
+    this.selectedState = 'all';
   }
 
   async connectedCallback() {
@@ -33,6 +34,21 @@ class AssignmentsView extends HTMLElement {
     this.state.tasksByCourse = tasksByCourse;
     this.state.loading = false;
     this.render();
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    this.querySelectorAll('.btnState').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.handleStateClick(btn.dataset.state);
+      });
+    });
+  }
+
+  handleStateClick(state) {
+    this.selectedState = state;
+    this.render();
+    this.setupEventListeners();
   }
 
   render() {
@@ -57,20 +73,20 @@ class AssignmentsView extends HTMLElement {
           <p class="text-sm text-yellow-800">Some assignments require course completion before submission.</p>
         </div>
         <div class="flex flex-wrap gap-2 mb-8">
-          <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-            <i class="bi bi-list-task mr-2 text-white"></i> All
+          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'all' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'all' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="all">
+            <i class="bi bi-list-task mr-2 ${this.selectedState === 'all' ? 'text-white' : 'text-blue-500'}"></i> All
           </button>
-          <button class="flex items-center px-4 py-2 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition">
-            <i class="bi bi-hourglass-split mr-2 text-yellow-500"></i> Pending
+          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'pending' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'pending' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="pending">
+            <i class="bi bi-hourglass-split mr-2 ${this.selectedState === 'pending' ? 'text-white' : 'text-yellow-500'}"></i> Pending
           </button>
-          <button class="flex items-center px-4 py-2 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition">
-            <i class="bi bi-check-circle-fill mr-2 text-green-600"></i> Completed
+          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'completed' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'completed' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="completed">
+            <i class="bi bi-check-circle-fill mr-2 ${this.selectedState === 'completed' ? 'text-white' : 'text-green-600'}"></i> Completed
           </button>
-          <button class="flex items-center px-4 py-2 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition">
-            <i class="bi bi-exclamation-triangle-fill text-yellow-500 mr-2"></i> Overdue
+          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'overdue' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'overdue' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="overdue">
+            <i class="bi bi-exclamation-triangle-fill ${this.selectedState === 'overdue' ? 'text-white' : 'text-yellow-500'} mr-2"></i> Overdue
           </button>
-          <button class="flex items-center px-4 py-2 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition">
-            <i class="bi bi-lock-fill mr-2 text-orange-500"></i> Locked
+          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'locked' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'locked' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="locked">
+            <i class="bi bi-lock-fill mr-2 ${this.selectedState === 'locked' ? 'text-white' : 'text-orange-500'}"></i> Locked
           </button>
         </div>
         ${Object.entries(categories).map(([category, courses]) => `
@@ -91,7 +107,13 @@ class AssignmentsView extends HTMLElement {
 
   // Renderiza las tareas de un curso
   renderCourseTasks(course, tasks) {
-    return tasks.map(task => `
+    // Filtra por estado si no es 'all'
+    let filteredTasks = tasks;
+    if (this.selectedState && this.selectedState !== 'all') {
+      filteredTasks = tasks.filter(task => task.status === this.selectedState);
+    }
+  
+    return filteredTasks.map(task => `
       <div class="bg-white border-l-4 ${this.getTaskBorderColor(task.status)} rounded-lg overflow-hidden shadow-sm hover:shadow-md transition mb-4">
         <div class="flex items-center px-4 py-2">
           ${this.getTaskStatusIcon(task.status)}
