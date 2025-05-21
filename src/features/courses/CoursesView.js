@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+import { getCourses, getCourseByCategory } from "../../services/coursesService.js";
 
 class CoursesView extends HTMLElement {
   constructor() {
@@ -17,8 +17,7 @@ class CoursesView extends HTMLElement {
       if (category) {
         courses = await getCourseByCategory(category);
       } else {
-        const res = await fetch(`${API_URL}/cursos`);
-        courses = await res.json();
+        courses = await getCourses();
       }
 
       if (!courses || courses.length === 0) {
@@ -29,12 +28,12 @@ class CoursesView extends HTMLElement {
       let html = '<div> <h1 class="pb-4 text-5xl w-full mb-8 ">Available Courses</h1><div>';
 
       if (category) {
+
         html += `
-      
         <section class="mb-12">
-          <h2 class="text-2xl mb-20 w-full">${cat}</h2>
+          <h2 class="text-2xl mb-8 w-full">${category}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            ${grouped[cat].map(course => this.renderCourseCard(course)).join('')}
+            ${courses.map(course => this.renderCourseCard(course)).join('')}
           </div>
         </section>
         `;

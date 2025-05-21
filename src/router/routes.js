@@ -13,6 +13,10 @@ export default [
       component: 'courses-details'
     },
     {
+      path: '/courses-content',
+      component: 'courses-content'
+    },
+    {
       path: '/assignments',
       component: 'assignments-view'
     },
