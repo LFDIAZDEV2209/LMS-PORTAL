@@ -5,15 +5,33 @@ export class RecentActivity extends HTMLElement{
     }
     render(){
         this.innerHTML = `
-            <div class="gap-8 px-5 content-center mt-6 justify-center md:flex md:justify-between">
-                <h2>Recent Activity</h2>
-                <div class="flex justify-center py-1 pt-2">
-                    <img class="h-10 w-10 rounded-full"/>
-                    <div class="ml-3 overflow-hidden">
-                        <p class="text-sm font-medium text-gray-900 dark:text-white">Completed chapter 5 in Unity Game Development</p>
+            <div class="gap-8 p-5 content-center mt-6 justify-center md:justify-between bg-white shadow-md rounded">
+                <h2 class="text-lg">Recent Activity</h2>
+                <div class="flex p-4 bg-white shadow-md rounded mb-1">
+                    <div class="h-10 w-10 rounded-full bg-[#E1F0FA]">📚</div>
+                    <div class="ml-3 overflow-hidden w-1/1">
+                        <h5 class="truncate text-sm font-medium text-gray-900">Completed chapter 5 in Unity Game Development</h5>
                         <p class="truncate text-sm text-gray-500 dark:text-gray-400">2 hours ago</p>
                     </div>
-                </div
+                </div>
+                <div class="flex p-4  bg-white shadow-md rounded mb-1">
+                    <div>
+                        <img class="h-10 w-10 rounded-full bg-[#E1F0FA]" />
+                    </div>
+                    <div class="ml-3 overflow-hidden  w-1/1">
+                        <h5 class="truncate text-sm font-medium text-gray-900">Completed chapter 5 in Unity Game Development</h5>
+                        <p class="truncate text-sm text-gray-500 dark:text-gray-400">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex p-4 bg-white shadow-md rounded">
+                    <div>
+                        <img class="h-10 w-10 rounded-full bg-[#E1F0FA]"/>
+                    </div>
+                    <div class="ml-3 overflow-hidden  w-1/1">
+                        <h5 class="truncate text-sm font-medium text-gray-900">Completed chapter 5 in Unity Game Development</h5>
+                        <p class="truncate text-sm text-gray-500 dark:text-gray-400">2 hours ago</p>
+                    </div>
+                </div>
             </div>
         `;
     }
