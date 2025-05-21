@@ -139,7 +139,7 @@ class AssignmentsView extends HTMLElement {
             </span>
           </div>
         </div>
-        ${this.renderTaskActionButton(task.status)}
+        ${this.renderTaskActionButton(task)}
       </div>
     `).join('');
   }
@@ -188,12 +188,12 @@ class AssignmentsView extends HTMLElement {
     }
   }
 
-  renderTaskActionButton(status) {
-    switch (status) {
+  renderTaskActionButton(task) {
+    switch (task.status) {
       case 'pending':
         return `
           <div class="flex justify-end px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button class="open-submit-modal flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+            <button data-task-id="${task.id}" class="open-submit-modal flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
               <i class="bi bi-upload mr-2 text-white"></i> Submit Assignment
             </button>
           </div>

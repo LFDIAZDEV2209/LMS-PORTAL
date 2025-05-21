@@ -1,9 +1,19 @@
+import { getTaskById } from '../../../services/taskService.js';
+
 class AssignmentSubmit extends HTMLElement {
     constructor() {
         super();
+        this.taskId = null;
     }
 
     connectedCallback() {
+        this.render();
+        this.setUpEventListeners();
+    }
+
+    async setTaskId(taskId) {
+        this.taskId = taskId;
+        this.task = await getTaskById(taskId);
         this.render();
         this.setUpEventListeners();
     }
@@ -13,8 +23,10 @@ class AssignmentSubmit extends HTMLElement {
             this.submitAssignment();
         });
 
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', async (e) => {
             if (e.target.closest('.open-submit-modal')) {
+                const taskId = e.target.closest('.open-submit-modal').getAttribute('data-task-id');
+                await this.setTaskId(taskId)
                 this.openModal();
             }
         });
@@ -52,7 +64,7 @@ class AssignmentSubmit extends HTMLElement {
                             <div class="flex items-center gap-4 mt-2">
                                 <span class="text-sm font-medium text-blue-600 cursor-pointer hover:underline">Full Stack Development</span>
                                 <span class="flex items-center text-sm font-medium text-red-500">
-                                    <span class="mr-1">📅</span> Due: Mar 14, 2024
+                                    <span class="mr-1">📅</span> Due: ${this.task?.dueDate || ''}
                                 </span>
                             </div>
                         </div>
@@ -62,16 +74,14 @@ class AssignmentSubmit extends HTMLElement {
                     <div class="p-6">
                         <!-- Assignment Info -->
                         <div class="mb-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Final Project: E-commerce Platform</h4>
-                            <p class="text-gray-600 mb-4">
-                                Build a complete e-commerce platform using React, Node.js, and MongoDB. Implement user authentication, product management, shopping cart, and payment processing.
-                            </p>
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">${this.task?.title || ''}</h4>
+                            <p class="text-gray-600 mb-4">${this.task?.description || ''}</p>
                             <div class="flex gap-4 text-sm text-gray-500">
                                 <span class="flex items-center">
-                                    <span class="mr-1">🎯</span> Points: 100
+                                    <span class="mr-1">🎯</span> Points: ${this.task?.points || ''}
                                 </span>
                                 <span class="flex items-center">
-                                    <span class="mr-1">📝</span> Type: Project
+                                    <span class="mr-1">📝</span> Type: ${this.task?.type || ''}
                                 </span>
                             </div>
                         </div>
