@@ -157,12 +157,12 @@ class AdminList extends HTMLElement {
           .map(
             (course) => `
             <li class="p-4 hover:bg-gray-50 transition-colors duration-150">
-              <div class="flex items-center justify-between">
+              <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div class="flex-1">
-                  <div class="flex items-center space-x-3">
-                    <img src="${course.imageUrl}" alt="${course.title}" class="w-12 h-12 rounded-lg object-cover">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <img src="${course.imageUrl}" alt="${course.title}" class="w-16 h-16 sm:w-12 sm:h-12 rounded-lg object-cover">
                     <div>
-                      <h3 class="font-medium text-gray-800">${course.title}</h3>
+                      <h3 class="font-medium text-gray-800 text-lg sm:text-base">${course.title}</h3>
                       <p class="text-sm text-gray-500">${course.level} • ${course.duration}</p>
                     </div>
                   </div>
@@ -173,11 +173,11 @@ class AdminList extends HTMLElement {
                     ).join('')}
                   </div>
                 </div>
-                <div class="flex items-center space-x-3 ml-4">
-                  <div class="text-right">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:gap-4">
+                  <div class="text-left sm:text-right">
                     <span class="block text-xs text-gray-500">${course.structure.lessons} lecciones</span>
                   </div>
-                  <div class="flex items-center space-x-2">
+                  <div class="flex items-center gap-2">
                     <i class="bi bi-pencil-square btnEdit text-gray-500 cursor-pointer hover:text-blue-500 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
                     <i class="bi bi-trash btnDelete text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
                   </div>
