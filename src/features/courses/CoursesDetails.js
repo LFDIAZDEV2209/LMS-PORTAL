@@ -1,4 +1,4 @@
-import { getCourseById } from "../../services/coursesService.js";
+import { getCourseWithModules } from "../../services/coursesService.js";
 
 class CoursesDetails extends HTMLElement {
     constructor() {
@@ -33,7 +33,7 @@ class CoursesDetails extends HTMLElement {
             
             if (courseId) {
                 console.log('Intentando cargar curso con ID:', courseId);
-                this.course = await getCourseById(courseId);
+                this.course = await getCourseWithModules(courseId);
                 console.log('Curso cargado exitosamente:', this.course);
             } else {
                 console.error('No se encontró ID en la URL');
@@ -157,7 +157,7 @@ class CoursesDetails extends HTMLElement {
                     </div>
 
                     <div class="lg:w-80">
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25 flex flex-col justify-center">
                             <div class="mb-4 flex flex-col items-center">
                                 <span class="block text-3xl font-bold text-gray-900">$99.99</span>
                                 <span class="text-gray-500">One-time payment</span>
@@ -182,9 +182,9 @@ class CoursesDetails extends HTMLElement {
                                 </li>
                             </ul>
 
-                            <button class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center ">
                                 Start Learning
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
