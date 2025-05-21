@@ -3,11 +3,11 @@ class CoursesContent extends HTMLElement{
         super();
 
     }
-    connectedCallback(){
+    connectedCallback() {
         this.render();
-    }
+      }
 
-    async render(){
+    async render() {
        this.innerHTML =`
        <div class="max-w-6xl mx-auto border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
         <!-- Header con botón de regreso -->
