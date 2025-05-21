@@ -81,7 +81,7 @@ class CoursesDetails extends HTMLElement {
 
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
                     <div class="relative h-64 md:h-80 flex items-end">
-                        <img class="w-full h-full object-cover absolute inset-0" src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" alt="${this.course.title}">
+                        <img class="w-full h-full object-cover absolute inset-0" src="${this.course.imageUrl}" alt="${this.course.title}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                          <div class="relative z-10 p-4 md:p-6 text-white w-full flex flex-col justify-end">
                             <h1 class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">${this.course.title}</h1>
