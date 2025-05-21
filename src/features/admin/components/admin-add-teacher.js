@@ -79,7 +79,7 @@ class AdminAddTeacher extends HTMLElement {
                         <div class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-bold text-gray-800">Agregar Nuevo Profesor</h2>
                             <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
-                                <i class="bi bi-x-circle-fill text-xl"></i>
+                                <i class="bi bi-x text-xl"></i>
                             </button>
                         </div>
                         

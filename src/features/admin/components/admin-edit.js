@@ -1,15 +1,18 @@
 import { putCourse } from "../../../services/coursesService.js";
 import { getCourseById } from "../../../services/coursesService.js";
+import { getTeachers } from "../../../services/teacherService.js";
 
 class AdminEdit extends HTMLElement {
   constructor() {
     super();
     this.course = null;
+    this.teachers = [];
   }
 
   connectedCallback() {
     this.render();
     this.setUpEventListeners();
+    this.loadTeachers();
   }
 
   setUpEventListeners() {
@@ -67,6 +70,27 @@ class AdminEdit extends HTMLElement {
     }
   }
 
+  async loadTeachers() {
+    try {
+      this.teachers = await getTeachers();
+      this.populateTeacherSelect();
+    } catch (error) {
+      console.error("Error loading teachers:", error);
+    }
+  }
+
+  populateTeacherSelect() {
+    const select = this.querySelector("#instructor");
+    if (select) {
+      this.teachers.forEach(teacher => {
+        const option = document.createElement("option");
+        option.value = teacher.id;
+        option.textContent = teacher.name;
+        select.appendChild(option);
+      });
+    }
+  }
+
   populateFields() {
     if (!this.course) {
       console.error("No hay curso para poblar los campos");
@@ -79,7 +103,7 @@ class AdminEdit extends HTMLElement {
     this.querySelector("#duration").value = this.course.duration || "";
     this.querySelector("#overview").value = this.course.overview || "";
     this.querySelector("#imageUrl").value = this.course.imageUrl || "";
-    this.querySelector("#instructor").value = this.course.instructor || "";
+    this.querySelector("#instructor").value = this.course.instructorId || "";
     this.querySelector("#prerequisites").value = Array.isArray(this.course.prerequisites) 
       ? this.course.prerequisites.join("\n") 
       : "";
@@ -105,7 +129,7 @@ class AdminEdit extends HTMLElement {
       duration: this.querySelector("#duration").value,
       overview: this.querySelector("#overview").value,
       imageUrl: this.querySelector("#imageUrl").value,
-      instructor: this.querySelector("#instructor").value,
+      instructorId: this.querySelector("#instructor").value,
       prerequisites: this.querySelector("#prerequisites")
         .value.split("\n")
         .map(item => item.trim())
@@ -145,9 +169,7 @@ class AdminEdit extends HTMLElement {
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-xl font-bold text-gray-800">Editar Curso</h2>
               <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+                <i class="bi bi-x text-xl"></i>
               </button>
             </div>
           </div>
@@ -191,7 +213,9 @@ class AdminEdit extends HTMLElement {
 
               <div>
                 <label for="instructor" class="block text-sm font-medium text-gray-700 mb-1">Instructor</label>
-                <input type="text" id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                <select id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                  <option value="">Seleccione un instructor...</option>
+                </select>
               </div>
 
               <div>
