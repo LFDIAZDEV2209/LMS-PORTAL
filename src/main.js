@@ -15,6 +15,7 @@ import './features/admin/components/admin-delete.js';
 import './features/admin/components/admin-add.js';
 import './features/admin/components/admin-add-teacher.js';
 import './features/admin/components/admin-teacher-dashboard.js';
+import './features/courses/CoursesContent.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Crear y agregar el layout principal
