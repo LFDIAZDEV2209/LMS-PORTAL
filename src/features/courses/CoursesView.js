@@ -42,14 +42,14 @@ class CoursesView extends HTMLElement {
         return;
       }
 
-      let html = '<div> <h1 class="pb-4 text-5xl w-full mb-8 ">Available Courses</h1><div>';
+      let html = '<div> <h1 class="pb-4 text-5xl w-full mb-8 md:pl-10 ">Available Courses</h1><div>';
 
       if (category) {
 
         html += `
         <section class="mb-12">
           <h2 class="text-2xl mb-8 w-full">${category}</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             ${courses.map(course => this.renderCourseCard(course)).join('')}
           </div>
         </section>
@@ -64,9 +64,9 @@ class CoursesView extends HTMLElement {
 
         for (const cat in grouped) {
           html += `
-            <section class="mb-12">
-              <h2 class="text-2xl font-bold pm-4 mb-5">${cat}</h2>
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 items-center overflow-hidden">
+            <section class="mb-8">
+              <h2 class="text-2xl font-bold pm-4 mb-5 md:pl-10">${cat}</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-between overflow-hidden">
                 ${grouped[cat].map(course => this.renderCourseCard(course)).join('')}
               </div>
             </section>
@@ -83,7 +83,7 @@ class CoursesView extends HTMLElement {
   renderCourseCard(course) {
     console.log('ID de la tarjeta:', course.id); 
     return `
-    <div class="group w-full sm:w-[370px] mx-auto h-[430px] [perspective:1000px]">
+    <div class="group w-full sm:w-[370px] mx-auto h-[430px] [perspective:10200px]">
       <div class="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-[.flipped]:rotate-y-180">
         <!-- Cara frontal -->
         <div class="absolute w-full h-[430px] rounded-lg overflow-hidden bg-white shadow hover:shadow-lg transition-transform hover:-translate-y-1 z-20 [backface-visibility:hidden]">
