@@ -90,8 +90,10 @@ class CoursesView extends HTMLElement {
           <div class="hidden course-id">${course.id}</div>
           <div class="relative overflow-hidden">
             <img src="${course.imageUrl}" alt="Course image for ${course.title}" class="w-full h-[200px] object-cover">
-            <div class="absolute top-3 left-3 bg-black bg-opacity-60 text-white text-base px-3 py-2 rounded-full">${course.level}</div>
-            <div class="absolute top-3 right-3 bg-black bg-opacity-60 text-white text-base px-3 py-2 rounded-full flex items-center">
+            <div class="absolute top-3 left-3 bg-black/60 text-white text-base px-3 py-2 rounded-full">
+            <p>${course.level}</p>
+            </div>
+            <div class="absolute top-3 right-3 bg-black/60 text-white text-base px-3 py-2 rounded-full flex items-center">
               <svg class="w-4 h-4 mr-1" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
@@ -99,9 +101,9 @@ class CoursesView extends HTMLElement {
               ${course.duration}
             </div>
           </div>
-          <div class="p-4">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">${course.title}</h3>
-            <p class="text-sm text-[#7a8582] mb-4">${course.overview}</p>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold text-gray-800 mb-5 ">${course.title}</h3>
+            <p class="text-sm text-[#7a8582] mb-4 h-[5.5rem]">${course.overview}</p>
             <div class="flex gap-3 justify-around">
               <a href="/courses-details?id=${course.id}" data-link class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">Enroll Now</a>
               <a class="border border-blue-500 text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium more-info-btn" href="javascript:void(0);">More Info</a>
