@@ -81,7 +81,7 @@ class CoursesDetails extends HTMLElement {
 
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
                     <div class="relative h-64 md:h-80 flex items-end">
-                        <img class="w-full h-full object-cover absolute inset-0" src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" alt="${this.course.title}">
+                        <img class="w-full h-full object-cover absolute inset-0" src="${this.course.imageUrl}" alt="${this.course.title}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                          <div class="relative z-10 p-4 md:p-6 text-white w-full flex flex-col justify-end">
                             <h1 class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">${this.course.title}</h1>
@@ -157,7 +157,7 @@ class CoursesDetails extends HTMLElement {
                     </div>
 
                     <div class="lg:w-80">
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25 flex flex-col justify-center">
                             <div class="mb-4 flex flex-col items-center">
                                 <span class="block text-3xl font-bold text-gray-900">$99.99</span>
                                 <span class="text-gray-500">One-time payment</span>
@@ -182,7 +182,7 @@ class CoursesDetails extends HTMLElement {
                                 </li>
                             </ul>
 
-                            <a "/courses-content?id" data-link class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center ">
                                 Start Learning
                             </a>
                         </div>

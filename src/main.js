@@ -5,6 +5,7 @@ import './features/dashboard/DashboardView.js';
 import './features/courses/CoursesView.js';
 import './features/courses/CoursesDetails.js';
 import './features/assignments/AssignmentsView.js';
+import './features/assignments/components/assignment-submit.js';
 import './features/progress/ProgressView.js';
 import './features/profile/ProfileView.js';
 import './features/admin/AdminView.js';
