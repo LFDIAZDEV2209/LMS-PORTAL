@@ -236,6 +236,18 @@ const enrollStudent = async (studentId, courseId) => {
   }
 };
 
+const getTopicsByCourseId = async (courseId) => {
+  const res = await fetch(`${API_URL}/topics?courseId=${courseId}`);
+  if (!res.ok) throw new Error("Error fetching topics");
+  return await res.json();
+};
+
+export const getCourseByTitle = async (title) => {
+  const res = await fetch(`${API_URL}/courses?title=${encodeURIComponent(title)}`);
+  if (!res.ok) throw new Error("Error fetching course by title");
+  return await res.json(); // Devuelve un array de cursos que coinciden con el título
+};
+
 export {
   getCourses,
   getCourseById,
@@ -246,4 +258,6 @@ export {
   getCourseWithModules,
   getCourseTasks,
   enrollStudent,
+  getTopicsByCourseId,
+  
 };
