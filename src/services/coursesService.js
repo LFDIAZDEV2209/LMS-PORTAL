@@ -180,21 +180,24 @@ const deleteCourse = async (id) => {
 
 const getCourseWithModules = async (courseId) => {
   try {
-    const [courseResponse, modulesResponse] = await Promise.all([
-      fetch(`${API_URL}/cursos/${courseId}`),
-      fetch(`${API_URL}/modulos?cursoId=${courseId}`),
-    ]);
-
-    if (!courseResponse.ok || !modulesResponse.ok) {
-      throw new Error('Error fetching course or modules');
-    }
-
+    // 1. Obtener el curso
+    const courseResponse = await fetch(`${API_URL}/cursos/${courseId}`);
+    if (!courseResponse.ok) throw new Error('Error fetching course');
     const course = await courseResponse.json();
-    const modules = await modulesResponse.json();
 
+    // 2. Obtener todos los módulos y filtrar los asociados
+    const allModulesResponse = await fetch(`${API_URL}/modulos`);
+    if (!allModulesResponse.ok) throw new Error('Error fetching modules');
+    const allModules = await allModulesResponse.json();
+
+    // Filtrar solo los módulos cuyos id estén en moduloIds
+    const moduleIds = (course.moduloIds || []).map(String);
+    const modules = allModules.filter(m => moduleIds.includes(String(m.id)));
+
+    // 3. Retornar el curso con los módulos asociados
     return { ...course, modules };
   } catch (error) {
-    console.error("Error fetching course with modules:", error);
+    console.error('Error fetching course with modules:', error);
     throw error;
   }
 };
@@ -233,6 +236,18 @@ const enrollStudent = async (studentId, courseId) => {
   }
 };
 
+const getTopicsByCourseId = async (courseId) => {
+  const res = await fetch(`${API_URL}/topics?courseId=${courseId}`);
+  if (!res.ok) throw new Error("Error fetching topics");
+  return await res.json();
+};
+
+export const getCourseByTitle = async (title) => {
+  const res = await fetch(`${API_URL}/courses?title=${encodeURIComponent(title)}`);
+  if (!res.ok) throw new Error("Error fetching course by title");
+  return await res.json(); // Devuelve un array de cursos que coinciden con el título
+};
+
 export {
   getCourses,
   getCourseById,
@@ -243,4 +258,6 @@ export {
   getCourseWithModules,
   getCourseTasks,
   enrollStudent,
+  getTopicsByCourseId,
+  
 };
