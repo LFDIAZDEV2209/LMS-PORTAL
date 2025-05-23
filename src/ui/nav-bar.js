@@ -10,12 +10,18 @@ class NavBar extends HTMLElement {
     render() {
         this.innerHTML = `
             <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500">
-                <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="max-w-7xl mx-auto flex justify-between items-center relative">
                     <div class="flex flex-col font-bold text-2xl leading-5 mr-6 select-none">
                         <span>LMS</span>
                         <span>Portal</span>
                     </div>
-                    <ul class="flex list-none gap-4 mx-4 items-center">
+                    <button id="hamburger-btn" class="md:hidden p-2 rounded focus:outline-none">
+                        <i class="bi bi-list text-2xl"></i>
+                    </button>
+                    <ul id="nav-links"
+                        class="hidden flex-col space-y-2 absolute top-full left-2 w-[200px] bg-[#344350] rounded-lg shadow-lg py-4 px-6 z-50
+                               md:flex md:static md:flex-row md:space-y-0 md:space-x-4 md:bg-transparent md:shadow-none md:rounded-none md:p-0 md:w-auto
+                               transition-all duration-300 opacity-0 scale-95 md:opacity-100 md:scale-100">
                         <li><a href="/" data-link class="nav-btn font-medium rounded-md px-5 py-2 transition hover:bg-[#3e5263] hover:text-[#5fa8e6]">Dashboard</a></li>
                         <li><a href="/courses" data-link class="nav-btn font-medium rounded-md px-5 py-2 transition hover:bg-[#3e5263] hover:text-[#5fa8e6]">Courses</a></li>
                         <li><a href="/assignments" data-link class="nav-btn font-medium rounded-md px-5 py-2 transition hover:bg-[#3e5263] hover:text-[#5fa8e6]">Assignments</a></li>
@@ -138,6 +144,37 @@ class NavBar extends HTMLElement {
                     langSelect.classList.remove('bg-black');
                     langSelect.classList.add('bg-[#3e5263]');
                 }
+            });
+        }
+
+        const hamburgerBtn = this.querySelector('#hamburger-btn');
+        const navLinks = this.querySelector('#nav-links');
+
+        if (hamburgerBtn && navLinks) {
+            hamburgerBtn.addEventListener('click', () => {
+                const isOpen = !navLinks.classList.contains('hidden');
+                if (isOpen) {
+                    navLinks.classList.remove('opacity-100', 'scale-100');
+                    navLinks.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => navLinks.classList.add('hidden'), 300);
+                } else {
+                    navLinks.classList.remove('hidden');
+                    setTimeout(() => {
+                        navLinks.classList.remove('opacity-0', 'scale-95');
+                        navLinks.classList.add('opacity-100', 'scale-100');
+                    }, 10);
+                }
+            });
+
+            // Cierra el menú al hacer click en un link (opcional)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        navLinks.classList.remove('opacity-100', 'scale-100');
+                        navLinks.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => navLinks.classList.add('hidden'), 300);
+                    }
+                });
             });
         }
     }
