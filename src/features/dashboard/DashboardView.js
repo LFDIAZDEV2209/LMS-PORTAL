@@ -9,8 +9,8 @@ class DashboardView extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="block p-4 md:w-2/3 justify-center-safe m-auto">
-        <h1 class="text-2xl font-bold text-center">Dashboard</h1>
+      <div class="bg-gray-100 min-h-screen p-8 py-">
+        <h1 class="text-5xl font-semibold text-[#2C3E50] pt-2">Dashboard</h1>
         <dashboard-card></dashboard-card>
         <app-enrolled></app-enrolled>
         <app-recent></app-recent>
