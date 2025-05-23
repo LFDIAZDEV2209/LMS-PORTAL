@@ -65,7 +65,7 @@ class CoursesDetails extends HTMLElement {
     render() {
         if (!this.course) {
             this.innerHTML = `
-                <div class="text-center py-8">
+                <div class="text-center py-8 shadow-lg ">
                     <p class="text-gray-500">Cargando curso...</p>
                 </div>
             `;
@@ -79,12 +79,12 @@ class CoursesDetails extends HTMLElement {
                     Volver a Cursos
                 </a>
 
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
                     <div class="relative h-64 md:h-80 flex items-end">
                         <img class="w-full h-full object-cover absolute inset-0" src="${this.course.imageUrl}" alt="${this.course.title}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                          <div class="relative z-10 p-4 md:p-6 text-white w-full flex flex-col justify-end">
-                            <h1 class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">${this.course.title}</h1>
+                            <h1 class="text-2xl md:text-3xl font-bold mb-1 md:mb-2 text-white">${this.course.title}</h1>
                              <div class="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
                                 <span class="flex items-center px-2 py-1 rounded-full bg-gray-900 bg-opacity-50 text-white text-xs md:text-sm">
                                     <i class="bi bi-clock mr-1"></i>
@@ -119,14 +119,14 @@ class CoursesDetails extends HTMLElement {
 
                         <div class="bg-white rounded-xl shadow-sm p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Prerequisites</h3>
-                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <ul class="list-none list-inside space-y-2 text-gray-600">
                                 ${this.course.prerequisites.map(prereq => `<li>${prereq}</li>`).join('')}
                             </ul>
                         </div>
 
                         <div class="bg-white rounded-xl shadow-sm p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">What You'll Learn</h3>
-                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <ul class="list-none list-inside space-y-2 text-gray-600 ">
                                 ${this.course.learningOutcomes.map(outcome => `<li>${outcome}</li>`).join('')}
                             </ul>
                         </div>
@@ -146,9 +146,11 @@ class CoursesDetails extends HTMLElement {
                                             </span>
                                         </div>
                                         <div class="module-content hidden p-4">
-                                            <ul class="list-disc list-inside space-y-2 text-gray-600">
-                                                ${module.topics.map(topic => `<li>${topic}</li>`).join('')}
+                                            <ul class="list-none list-inside space-y-2 text-gray-600">
+                                                ${module.topics.map(topic => `<li>${topic}</li> <hr class="border-t-1 border-gray-300 w-full">`).join('')}
+                                                
                                             </ul>
+                                            
                                         </div>
                                     </div>
                                 `).join('')}
@@ -182,7 +184,7 @@ class CoursesDetails extends HTMLElement {
                                 </li>
                             </ul>
 
-                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center ">
+                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-400 hover:bg-blue-500 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center ">
                                 Start Learning
                             </a>
                         </div>
