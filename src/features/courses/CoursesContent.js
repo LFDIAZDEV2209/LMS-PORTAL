@@ -1,14 +1,14 @@
 class CourseContent extends HTMLElement {
   constructor() {
     super();
-    this.selectedTopicId = 1;
+    this.selectedTopicId = 0;
     this.topics = [
       {
         id: 1,
         title: "Introduction to the Course",
         duration: "10 min",
         description: "Overview of what you will learn in this course and how to get the most out of it.",
-        completed: true,
+        completed: false,
         resources: [
           { title: "Course Syllabus", icon: "syllabus" },
           { title: "Setup Instructions", icon: "setup" },
@@ -105,12 +105,12 @@ class CourseContent extends HTMLElement {
       });
     });
 
-    // Back button
+
     const backButton = this.querySelector('.back-button');
     if (backButton) {
-      backButton.addEventListener('click', () => {
-        console.log('Back to course list');
-
+      backButton.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        window.history.back();
       });
     }
   }
@@ -134,19 +134,22 @@ class CourseContent extends HTMLElement {
     const completedCount = this.topics.filter(topic => topic.completed).length;
 
 
-    const topicListHTML = this.topics.map(topic => `
+    const topicListHTML = this.topics.map((topic, idx) => `
       <div 
         class="flex items-center p-2 rounded cursor-pointer topic-item transition-colors ${
-          this.selectedTopicId === topic.id ? 'bg-blue-500 text-white' : 'hover:bg-gray-100 text-gray-800'
+          this.selectedTopicId === topic.id ? 'bg-blue-500 text-white' : 'hover:bg-blue-100 text-gray-800'
         }"
         data-id="${topic.id}"
       >
         <div class="${
-          this.selectedTopicId === topic.id ? 'text-white' : topic.completed ? 'text-green-500' : 'text-gray-400'
-        } mr-3 rounded-full p-1">
-          ${topic.completed 
-            ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>` 
-            : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>`
+          topic.completed
+            ? 'text-green-500 border border-green-500 bg-white'
+            : 'text-black border border-gray-300 bg-gray-300'
+        } mr-3 rounded-full p-1 h-7 w-7 flex items-center justify-center font-light">
+          ${
+            topic.completed
+              ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
+              : idx + 1
           }
         </div>
         <div>
@@ -155,26 +158,36 @@ class CourseContent extends HTMLElement {
         </div>
       </div>
     `).join('');
+    
 
 
     let resourcesHTML = '';
     if (selectedTopic) {
-      resourcesHTML = selectedTopic.resources.map((resource, idx) => `
-        <div class="p-2 border border-gray-200 border-t-0 hover:bg-gray-50">
-          <label class="flex items-center space-x-2 cursor-pointer">
-            <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-500 resource-checkbox" data-resource="${resource.title}">
-            <div class="flex items-center">
-              ${this.getResourceIcon(resource.icon)}
-              <span class="text-sm ml-2">${resource.title}</span>
-            </div>
-          </label>
-        </div>
+      resourcesHTML = selectedTopic.resources.map(resource => `
+        <a 
+          href="#" 
+          class="flex items-center p-2 border border-gray-200 border-t-0 hover:bg-gray-50 transition-colors"
+          data-resource="${resource.title}"
+        >
+          ${this.getResourceIcon(resource.icon)}
+          <span class="text-sm ml-2 text-blue-600 underline ">${resource.title}</span>
+        </a>
       `).join('');
     }
 
 
     let mainContentHTML = '';
-    if (selectedTopic) {
+    if (this.selectedTopicId === 0) {
+      mainContentHTML = `
+        <div class="flex flex-col items-center justify-center h-full p-8">
+          <div class="text-6xl mb-4">📺</div>
+          <h2 class="text-2xl font-bold mb-2">Select a Topic to Start Learning</h2>
+          <p class="text-gray-600 text-center">
+            Choose a topic from the sidebar to begin watching the course content.
+          </p>
+        </div>
+      `;
+    } else {
       mainContentHTML = `
         <!-- Video section -->
         <div class="p-4">
@@ -211,7 +224,7 @@ class CourseContent extends HTMLElement {
           <!-- Navigation buttons -->
           <div class="flex justify-between mt-4">
             <button
-              class="px-4 py-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center prev-button ${this.selectedTopicId === 1 ? 'opacity-50 cursor-not-allowed' : ''}"
+              class="md:px-4 md:py-2 m-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center prev-button ${this.selectedTopicId === 1 ? 'opacity-50 cursor-not-allowed' : ''}"
               ${this.selectedTopicId === 1 ? 'disabled' : ''}
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -219,16 +232,16 @@ class CourseContent extends HTMLElement {
             </button>
 
             ${selectedTopic.completed 
-              ? `<button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors complete-button">
+              ? `<button class=" md:w-50 md:h-15 w-25 h-15 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors complete-button">
                     Completed
                  </button>` 
-              : `<button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors complete-button">
+              : `<button class="md:w-50 md:h-15 w-25 h-15 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors complete-button">
                     Mark as Complete
                  </button>`
             }
 
             <button
-              class="px-4 py-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center next-button ${this.selectedTopicId === this.topics.length ? 'opacity-50 cursor-not-allowed' : ''}"
+              class="md:px-4 md:py-2 m-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center next-button ${this.selectedTopicId === this.topics.length ? 'opacity-50 cursor-not-allowed' : ''}"
               ${this.selectedTopicId === this.topics.length ? 'disabled' : ''}
             >
               Next Topic
@@ -237,26 +250,15 @@ class CourseContent extends HTMLElement {
           </div>
         </div>
       `;
-    } else {
-
-      mainContentHTML = `
-        <div class="flex flex-col items-center justify-center h-full p-8">
-          <div class="text-6xl mb-4">📺</div>
-          <h2 class="text-2xl font-bold mb-2">Select a Topic to Start Learning</h2>
-          <p class="text-gray-600 text-center">
-            Choose a topic from the sidebar to begin watching the course content.
-          </p>
-        </div>
-      `;
     }
 
     this.innerHTML = `
       <div class="max-w-6xl mx-auto border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
         <!-- Header with back button -->
-        <div class="p-4 border-b border-gray-200">
-          <button class="px-3 py-1 text-sm border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors back-button">
-            ← Back to Course
-          </button>
+        <div class=" p-4 border-b border-gray-200">
+          <a  a href="/courses" data-link class="px-3 py-1 md:m-2 text-sm text-blue-500  hover:bg-amber-50 transition-colors back-button">
+            ← Back to Courses
+          </a>
         </div>
 
         <!-- Main content -->

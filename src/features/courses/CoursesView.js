@@ -92,12 +92,12 @@ class CoursesView extends HTMLElement {
   <div class="group w-full max-w-[380px] mx-auto min-h-[440px]">
     <div class="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-[.flipped]:rotate-y-180">
       <!-- Cara frontal -->
-      <div class="absolute w-full min-h-[430px] rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-lg transition-transform hover:-translate-y-1 z-20 [backface-visibility:hidden]">
+      <div class="absolute w-full min-h-[430px] rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-lg transition-transform  z-20 [backface-visibility:hidden]">
         <div class="hidden course-id">${course.id}</div>
         <div class="relative overflow-hidden">
-          <img src="${course.imageUrl}" alt="Course image for ${course.title}" class="w-full h-[200px] object-cover">
+          <img src="${course.imageUrl}" alt="Course image for ${course.title}" class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-110">
           <div class="absolute top-3 left-3 bg-black/60 text-white text-base px-3 py-2 rounded-full">
-          <p>${course.level}</p>
+            <p>${course.level}</p>
           </div>
           <div class="absolute top-3 right-3 bg-black/60 text-white text-base px-3 py-2 rounded-full flex items-center">
             <svg class="w-4 h-4 mr-1" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
@@ -111,19 +111,19 @@ class CoursesView extends HTMLElement {
           <h3 class="text-lg font-semibold text-gray-800 mb-5 ">${course.title}</h3>
           <p class="text-sm text-[#7a8582] mb-4 h-[5.5rem]">${course.overview}</p>
           <div class="flex gap-3 justify-around">
-            <a href="/courses-details?id=${course.id}" data-link class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-full text-sm font-medium">Enroll Now</a>
-            <a class="border border-blue-500 text-blue-400 hover:bg-gray-100 px-5 py-3 rounded-full text-sm font-medium more-info-btn" href="javascript:void(0);">More Info</a>
+            <a href="/courses-details?id=${course.id}" data-link class="bg-blue-500 hover:bg-blue-600 transition-transform hover:-translate-y-0.5 text-white px-5 py-3 rounded-full text-sm font-medium">Enroll Now</a>
+            <a class="border border-blue-500 text-blue-400 hover:bg-gray-100 px-5 py-3 transition-transform hover:-translate-y-0.5  rounded-full text-sm font-medium more-info-btn" href="javascript:void(0);">More Info</a>
           </div>
         </div>
       </div>
       <!-- Cara trasera -->
       <div class="absolute w-full min-h-[430px] rounded-lg overflow-hidden bg-white shadow p-4 z-10 [backface-visibility:hidden] rotate-y-180 flex flex-col justify-between">
         <div class= "overflow-scroll w-full h-[350px]">
-          <h2 class="pb-2 font-bold">Prerequisites</h2>
+          <h4 class="pb-2 font-medium">Prerequisites</h4>
           <p class="pb-2 text-[#7a8582]">${course.prerequisites}</p>
-          <h2 class="pb-2 font-bold">What You'll Learn</h2>
+          <h4 class="pb-2 font-medium">What You'll Learn</h4>
           <p class="pb-2 text-[#7a8582]">${course.learningOutcomes}</p>
-          <h2 class="pb-2 font-bold">Course Structure</h2>
+          <h4 class="pb-2 font-medium">Course Structure</h4>
           <p class="pb-2 text-[#7a8582]">${course.structure}</p>
         </div>
         <a class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-xl text-sm font-medium close-info-btn mt-4 text-center" href="javascript:void(0);">CLOSE</a>

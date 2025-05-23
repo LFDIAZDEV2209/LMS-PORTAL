@@ -112,26 +112,26 @@ class CoursesDetails extends HTMLElement {
 
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="flex-1 space-y-6">
-                        <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Course Overview</h3>
                             <p class="text-gray-600">${this.course.overview}</p>
                         </div>
 
-                        <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Prerequisites</h3>
                             <ul class="list-none list-inside space-y-2 text-gray-600">
                                 ${this.course.prerequisites.map(prereq => `<li>${prereq}</li>`).join('')}
                             </ul>
                         </div>
 
-                        <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">What You'll Learn</h3>
                             <ul class="list-none list-inside space-y-2 text-gray-600 ">
                                 ${this.course.learningOutcomes.map(outcome => `<li>${outcome}</li>`).join('')}
                             </ul>
                         </div>
 
-                        <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Course Structure</h3>
                             <div class="space-y-4">
                                 ${this.course.modules.map((module, index) => `
@@ -159,7 +159,7 @@ class CoursesDetails extends HTMLElement {
                     </div>
 
                     <div class="lg:w-80">
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-25 flex flex-col justify-center">
+                        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 sticky top-25 flex flex-col justify-center">
                             <div class="mb-4 flex flex-col items-center">
                                 <span class="block text-3xl font-bold text-gray-900">$99.99</span>
                                 <span class="text-gray-500">One-time payment</span>
@@ -184,7 +184,7 @@ class CoursesDetails extends HTMLElement {
                                 </li>
                             </ul>
 
-                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-400 hover:bg-blue-500 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center ">
+                            <a href="/courses-content" class="w-full py-3 px-4  bg-blue-400 hover:bg-blue-500 text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition text-center hover:-translate-y-0.5  ">
                                 Start Learning
                             </a>
                         </div>
