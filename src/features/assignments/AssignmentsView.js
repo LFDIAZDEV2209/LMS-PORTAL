@@ -67,35 +67,35 @@ class AssignmentsView extends HTMLElement {
 
     // Renderiza cada categoría y sus cursos/tareas
     this.innerHTML = `
-      <div class="assignments-view max-w-4xl mx-auto py-8">
-        <h2 class=" absolute text-4xl font-bold text-gray-900 top-30">Your Assignments</h2>
-        <div class="flex items-start mt-6 mb-6 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+      <div class="assignments-view w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Your Assignments</h2>
+        <div class="flex items-start mt-4 sm:mt-6 mb-4 sm:mb-6 p-2 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
           <i class="bi bi-exclamation-triangle-fill text-yellow-500 mr-2"></i>
-          <p class="text-sm text-yellow-800">Some assignments require course completion before submission.</p>
+          <p class="text-xs sm:text-sm text-yellow-800">Some assignments require course completion before submission.</p>
         </div>
-        <div class="flex flex-wrap gap-2 mb-8">
-          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'all' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'all' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="all">
-            <i class="bi bi-list-task mr-2 ${this.selectedState === 'all' ? 'text-white' : 'text-blue-500'}"></i> All
+        <div class="flex flex-wrap gap-2 mb-6 sm:mb-8">
+          <button class="btnState flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base ${this.selectedState === 'all' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'all' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="all">
+            <i class="bi bi-list-task mr-1 sm:mr-2 ${this.selectedState === 'all' ? 'text-white' : 'text-blue-500'}"></i> All
           </button>
-          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'pending' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'pending' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="pending">
-            <i class="bi bi-hourglass-split mr-2 ${this.selectedState === 'pending' ? 'text-white' : 'text-yellow-500'}"></i> Pending
+          <button class="btnState flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base ${this.selectedState === 'pending' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'pending' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="pending">
+            <i class="bi bi-hourglass-split mr-1 sm:mr-2 ${this.selectedState === 'pending' ? 'text-white' : 'text-yellow-500'}"></i> Pending
           </button>
-          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'completed' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'completed' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="completed">
-            <i class="bi bi-check-circle-fill mr-2 ${this.selectedState === 'completed' ? 'text-white' : 'text-green-600'}"></i> Completed
+          <button class="btnState flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base ${this.selectedState === 'completed' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'completed' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="completed">
+            <i class="bi bi-check-circle-fill mr-1 sm:mr-2 ${this.selectedState === 'completed' ? 'text-white' : 'text-green-600'}"></i> Completed
           </button>
-          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'overdue' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'overdue' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="overdue">
-            <i class="bi bi-exclamation-triangle-fill ${this.selectedState === 'overdue' ? 'text-white' : 'text-yellow-500'} mr-2"></i> Overdue
+          <button class="btnState flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base ${this.selectedState === 'overdue' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'overdue' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="overdue">
+            <i class="bi bi-exclamation-triangle-fill ${this.selectedState === 'overdue' ? 'text-white' : 'text-yellow-500'} mr-1 sm:mr-2"></i> Overdue
           </button>
-          <button class="btnState flex items-center px-4 py-2 ${this.selectedState === 'locked' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'locked' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="locked">
-            <i class="bi bi-lock-fill mr-2 ${this.selectedState === 'locked' ? 'text-white' : 'text-orange-500'}"></i> Locked
+          <button class="btnState flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base ${this.selectedState === 'locked' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-200'} rounded-full hover:${this.selectedState === 'locked' ? 'bg-blue-700' : 'bg-gray-50'} transition" data-state="locked">
+            <i class="bi bi-lock-fill mr-1 sm:mr-2 ${this.selectedState === 'locked' ? 'text-white' : 'text-orange-500'}"></i> Locked
           </button>
         </div>
         ${Object.entries(categories).map(([category, courses]) => `
-          <div class="mb-8">
-            <div class="flex items-center mb-3">
+          <div class="mb-6 sm:mb-8">
+            <div class="flex items-center mb-2 sm:mb-3">
               ${this.getCategoryIcon(category)}
-              <div class="flex flex-col">
-                <h3 class="text-xl font-semibold">${category}</h3>
+              <div class="flex flex-col w-full">
+                <h3 class="text-lg sm:text-xl font-semibold">${category}</h3>
                 <hr class="w-full border-t-2 border-blue-600 my-1">
               </div>
             </div>
@@ -116,21 +116,21 @@ class AssignmentsView extends HTMLElement {
     }
   
     return filteredTasks.map(task => `
-      <div class="bg-white border-l-4 ${this.getTaskBorderColor(task.status)} rounded-lg overflow-hidden shadow-sm hover:shadow-md transition mb-4">
-        <div class="flex items-center px-4 py-2">
+      <div class="bg-white border-l-4 ${this.getTaskBorderColor(task.status)} rounded-lg overflow-hidden shadow-sm hover:shadow-md transition mb-3 sm:mb-4">
+        <div class="flex items-center px-3 sm:px-4 py-2">
           ${this.getTaskStatusIcon(task.status)}
-          <span class="text-sm font-medium text-gray-800">${task.status.charAt(0).toUpperCase() + task.status.slice(1)}</span>
+          <span class="text-xs sm:text-sm font-medium text-gray-800">${task.status.charAt(0).toUpperCase() + task.status.slice(1)}</span>
         </div>
-        <div class="p-4">
+        <div class="p-3 sm:p-4">
           <div class="flex flex-col gap-1">
-            <h3 class="text-2xl font-bold text-gray-900">${task.title}</h3>
-            <span class="text-base text-blue-600 font-medium">${course.title}</span>
-            <span class="flex items-center text-sm text-red-500 font-medium mt-1 mb-2">
+            <h3 class="text-lg sm:text-2xl font-bold text-gray-900">${task.title}</h3>
+            <span class="text-sm sm:text-base text-blue-600 font-medium">${course.title}</span>
+            <span class="flex items-center text-xs sm:text-sm text-red-500 font-medium mt-1 mb-2">
               <i class="bi bi-calendar-event mr-1 text-red-500"></i> Due: ${task.dueDate}
             </span>
           </div>
-          <p class="mt-2 text-gray-600">${task.description}</p>
-          <div class="flex flex-wrap gap-4 mt-4 text-sm text-gray-500">
+          <p class="mt-2 text-sm sm:text-base text-gray-600">${task.description}</p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 mt-3 sm:mt-4 text-xs sm:text-sm text-gray-500">
             <span class="flex items-center">
               <i class="bi bi-bullseye mr-1 text-pink-500"></i> Points: ${task.points}
             </span>
@@ -147,13 +147,13 @@ class AssignmentsView extends HTMLElement {
   // Devuelve el ícono de la categoría
   getCategoryIcon(category) {
     switch (category) {
-      case 'Web Development':
+      case 'Video Games':
         return `<i class="bi bi-laptop text-2xl mr-2 text-blue-500"></i>`;
-      case 'Data Science':
+      case 'Backend':
         return `<i class="bi bi-bar-chart-line text-2xl mr-2 text-blue-500"></i>`;
-      case 'Design':
+      case 'Frontend':
         return `<i class="bi bi-palette-fill text-2xl mr-2 text-pink-500"></i>`;
-      case 'Computer Science':
+      case 'Schools':
         return `<i class="bi bi-lightning-charge-fill text-2xl mr-2 text-yellow-500"></i>`;
       default:
         return `<i class="bi bi-book text-2xl mr-2 text-gray-500"></i>`;
@@ -192,25 +192,25 @@ class AssignmentsView extends HTMLElement {
     switch (task.status) {
       case 'pending':
         return `
-          <div class="flex justify-end px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button data-task-id="${task.id}" class="open-submit-modal flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-              <i class="bi bi-upload mr-2 text-white"></i> Submit Assignment
+          <div class="flex justify-end px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 border-t border-gray-100">
+            <button data-task-id="${task.id}" class="open-submit-modal flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+              <i class="bi bi-upload mr-1 sm:mr-2 text-white"></i> Submit Assignment
             </button>
           </div>
         `;
       case 'locked':
         return `
-          <div class="flex justify-end px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button class="flex items-center px-4 py-2 bg-gray-200 text-gray-400 rounded-full cursor-not-allowed" disabled>
-              <i class="bi bi-lock-fill mr-2 text-orange-500"></i> Complete Course to Submit
+          <div class="flex justify-end px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 border-t border-gray-100">
+            <button class="flex items-center px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-gray-200 text-gray-400 rounded-full cursor-not-allowed" disabled>
+              <i class="bi bi-lock-fill mr-1 sm:mr-2 text-orange-500"></i> Complete Course to Submit
             </button>
           </div>
         `;
       case 'completed':
         return `
-          <div class="flex justify-start px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button class="flex items-center px-6 py-2 bg-gray-200 text-gray-400 rounded-full cursor-not-allowed" disabled>
-              <i class="bi bi-check-circle-fill mr-2 text-green-600"></i> Submitted
+          <div class="flex justify-start px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 border-t border-gray-100">
+            <button class="flex items-center px-4 sm:px-6 py-1.5 sm:py-2 text-sm sm:text-base bg-gray-200 text-gray-400 rounded-full cursor-not-allowed" disabled>
+              <i class="bi bi-check-circle-fill mr-1 sm:mr-2 text-green-600"></i> Submitted
             </button>
           </div>
         `;
