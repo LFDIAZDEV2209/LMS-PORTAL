@@ -9,7 +9,7 @@ class NavBar extends HTMLElement {
     
     render() {
         this.innerHTML = `
-            <nav class="bg-[#344350] text-white py-6 px-9">
+            <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500">
                 <div class="max-w-7xl mx-auto flex justify-between items-center">
                     <div class="flex flex-col font-bold text-2xl leading-5 mr-6 select-none">
                         <span>LMS</span>
@@ -25,16 +25,17 @@ class NavBar extends HTMLElement {
                     </ul>
                     <div class="flex items-center gap-4">
                         <div class="flex items-center">
-                            <button class="bg-transparent border-0 text-white text-xl cursor-pointer p-2 rounded-full transition hover:bg-[#3e5263]">
-                                <i class="bi bi-moon-fill text-yellow-400"></i>
+                            <button id="dark-toggle" class="bg-transparent border-0 text-white text-xl cursor-pointer p-2 rounded-full transition hover:bg-[#3e5263]">
+                                <i class="bi bi-moon-fill text-yellow-400" id="icon-moon"></i>
+                                <i class="bi bi-sun-fill text-yellow-300 hidden" id="icon-sun"></i>
                             </button>
                         </div>
                         <div>
-                            <select class="bg-transparent border border-white/30 text-white px-4 py-2 rounded-md text-sm focus:outline-none">
-                                <option value="en" class="text-black">English</option>
-                                <option value="es" class="text-black">Español</option>
-                                <option value="fr" class="text-black">Français</option>
-                                <option value="de" class="text-black">Deutsch</option>
+                            <select class="bg-[#3e5263] text-white border border-white/20 px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors duration-300">
+                                <option value="en" class="text-white">English</option>
+                                <option value="es" class="text-white">Español</option>
+                                <option value="fr" class="text-white">Français</option>
+                                <option value="de" class="text-white">Deutsch</option>
                             </select>
                         </div>
                         <!-- User dropdown -->
@@ -47,14 +48,14 @@ class NavBar extends HTMLElement {
                                 </div>
                                 <i id="user-menu-arrow" class="bi bi-chevron-down ml-1 transition-transform"></i>
                             </button>
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                            <div id="user-dropdown" class="opacity-0 scale-95 pointer-events-none absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 transition-all duration-300">
                                 <a href="/profile" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
                                     <i class="bi bi-person-fill text-purple-700 mr-2"></i> My Profile
                                 </a>
                                 <a href="/settings" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
                                     <i class="bi bi-gear-fill text-gray-400 mr-2"></i> Settings
                                 </a>
-                                <hr class="my-1">
+                                <hr class="my-1 border-gray-200">
                                 <button class="flex items-center w-full px-4 py-2 text-red-600 hover:bg-gray-100 transition">
                                     <i class="bi bi-box-arrow-right text-orange-400 mr-2"></i> Logout
                                 </button>
@@ -82,19 +83,60 @@ class NavBar extends HTMLElement {
         if (userMenuBtn && userDropdown && userArrow) {
             userMenuBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const isOpen = userDropdown.classList.toggle('hidden') === false;
-                userMenuBtn.classList.toggle('bg-[#3e5263]', isOpen);
-                userArrow.classList.toggle('bi-chevron-down', !isOpen);
-                userArrow.classList.toggle('bi-chevron-up', isOpen);
+                const isOpen = userDropdown.classList.contains('opacity-100');
+                if (isOpen) {
+                    userDropdown.classList.remove('opacity-100', 'scale-100');
+                    userDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    userArrow.classList.add('bi-chevron-down');
+                    userArrow.classList.remove('bi-chevron-up');
+                } else {
+                    userDropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                    userDropdown.classList.add('opacity-100', 'scale-100');
+                    userArrow.classList.remove('bi-chevron-down');
+                    userArrow.classList.add('bi-chevron-up');
+                }
             });
 
             // Cierra el menú si se hace click fuera
             document.addEventListener('click', (e) => {
                 if (!this.contains(e.target)) {
-                    userDropdown.classList.add('hidden');
-                    userMenuBtn.classList.remove('bg-[#3e5263]');
+                    userDropdown.classList.remove('opacity-100', 'scale-100');
+                    userDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
                     userArrow.classList.add('bi-chevron-down');
                     userArrow.classList.remove('bi-chevron-up');
+                }
+            });
+        }
+
+        const navbar = this.querySelector('#navbar');
+        const darkToggle = this.querySelector('#dark-toggle');
+        const iconMoon = this.querySelector('#icon-moon');
+        const iconSun = this.querySelector('#icon-sun');
+
+        let isDark = false;
+
+        if (darkToggle) {
+            darkToggle.addEventListener('click', () => {
+                isDark = !isDark;
+                if (isDark) {
+                    navbar.classList.remove('bg-[#344350]');
+                    navbar.classList.add('bg-black');
+                    iconMoon.classList.add('hidden');
+                    iconSun.classList.remove('hidden');
+                } else {
+                    navbar.classList.remove('bg-black');
+                    navbar.classList.add('bg-[#344350]');
+                    iconMoon.classList.remove('hidden');
+                    iconSun.classList.add('hidden');
+                }
+
+                const langSelect = this.querySelector('select');
+                if (isDark) {
+                    langSelect.classList.remove('bg-[#3e5263]');
+                    langSelect.classList.add('bg-black');
+                } else {
+                    langSelect.classList.remove('bg-black');
+                    langSelect.classList.add('bg-[#3e5263]');
                 }
             });
         }
