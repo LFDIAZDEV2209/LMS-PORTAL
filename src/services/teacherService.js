@@ -87,23 +87,25 @@ const createTeacher = async (teacher) => {
     
     const newTeacher = await teacherResponse.json();
     
-    // Luego actualizamos el curso para incluir el ID del nuevo profesor
-    const courseResponse = await fetch(`${API_URL}/cursos/${teacher.cursoId}`);
-    if (!courseResponse.ok) {
-      throw new Error(`Error fetching course: ${courseResponse.statusText}`);
-    }
-    
-    const course = await courseResponse.json();
-    const updatedDocenteIds = [...(course.docenteIds || []), newTeacher.id];
-    
-    const updateResponse = await fetch(`${API_URL}/cursos/${teacher.cursoId}`, {
-      method: 'PATCH',
-      headers: myHeaders,
-      body: JSON.stringify({ docenteIds: updatedDocenteIds }),
-    });
-    
-    if (!updateResponse.ok) {
-      throw new Error(`Error updating course: ${updateResponse.statusText}`);
+    // Solo actualizamos el curso si se proporcionó un cursoId válido
+    if (teacher.cursoId) {
+      const courseResponse = await fetch(`${API_URL}/cursos/${teacher.cursoId}`);
+      if (!courseResponse.ok) {
+        throw new Error(`Error fetching course: ${courseResponse.statusText}`);
+      }
+      
+      const course = await courseResponse.json();
+      const updatedDocenteIds = [...(course.docenteIds || []), newTeacher.id];
+      
+      const updateResponse = await fetch(`${API_URL}/cursos/${teacher.cursoId}`, {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: JSON.stringify({ docenteIds: updatedDocenteIds }),
+      });
+      
+      if (!updateResponse.ok) {
+        throw new Error(`Error updating course: ${updateResponse.statusText}`);
+      }
     }
     
     return newTeacher;

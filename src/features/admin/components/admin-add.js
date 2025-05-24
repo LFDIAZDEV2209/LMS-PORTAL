@@ -1,14 +1,38 @@
 import { postCourse } from "../../../services/coursesService.js";
+import { getTeachers } from "../../../services/teacherService.js";
 import Swal from 'sweetalert2';
 
 class AdminAdd extends HTMLElement {
     constructor() {
         super();
+        this.teachers = [];
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        await this.loadTeachers();
         this.render();
         this.setUpEventListeners();
+    }
+
+    async loadTeachers() {
+        try {
+            this.teachers = await getTeachers();
+            // Filtrar solo los profesores que no tienen curso asignado
+            this.teachers = this.teachers.filter(teacher => !teacher.cursoId);
+            
+            if (this.teachers.length === 0) {
+                await Swal.fire({
+                    icon: 'info',
+                    title: 'Sin profesores disponibles',
+                    text: 'Todos los profesores ya tienen un curso asignado.',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#3B82F6'
+                });
+            }
+        } catch (error) {
+            console.error("Error loading teachers:", error);
+            this.teachers = [];
+        }
     }
 
     setUpEventListeners() {
@@ -22,7 +46,6 @@ class AdminAdd extends HTMLElement {
             this.saveCourse();
         });
 
-        // Escuchar el clic en el botón de agregar curso
         document.querySelector('#addCourseBtn')?.addEventListener('click', () => {
             this.openModal();
         });
@@ -56,6 +79,22 @@ class AdminAdd extends HTMLElement {
         }
     }
 
+    validateCourseData(courseData) {
+        if (!courseData.title || courseData.title.trim() === '') {
+            throw new Error('El título del curso es requerido');
+        }
+        if (!courseData.category) {
+            throw new Error('Debe seleccionar una categoría');
+        }
+        if (!courseData.level) {
+            throw new Error('Debe seleccionar un nivel');
+        }
+        if (!courseData.instructor) {
+            throw new Error('Debe seleccionar un instructor');
+        }
+        return true;
+    }
+
     async saveCourse() {
         const imageUrl = this.querySelector("#imageUrl").value || "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg";
         const imageFile = this.querySelector("#imageFile").files[0];
@@ -68,7 +107,7 @@ class AdminAdd extends HTMLElement {
 
         const courseData = {
             category: this.querySelector("#category").value,
-            title: this.querySelector("#title").value,
+            title: this.querySelector("#title").value.trim(),
             level: this.querySelector("#level").value,
             duration: this.querySelector("#duration").value,
             overview: this.querySelector("#overview").value,
@@ -76,15 +115,16 @@ class AdminAdd extends HTMLElement {
             prerequisites: this.querySelector("#prerequisites").value.split(',').map(item => item.trim()),
             learningOutcomes: this.querySelector("#learningOutcomes").value.split(',').map(item => item.trim()),
             structure: {
-                lessons: parseInt(this.querySelector("#lessons").value),
-                projects: parseInt(this.querySelector("#projects").value),
-                assignments: parseInt(this.querySelector("#assignments").value),
-                capstoneProject: parseInt(this.querySelector("#capstoneProject").value)
+                lessons: parseInt(this.querySelector("#lessons").value) || 0,
+                projects: parseInt(this.querySelector("#projects").value) || 0,
+                assignments: parseInt(this.querySelector("#assignments").value) || 0,
+                capstoneProject: parseInt(this.querySelector("#capstoneProject").value) || 0
             },
             imageUrl: finalImageUrl
         };
 
         try {
+            this.validateCourseData(courseData);
             await postCourse(courseData);
             this.closeModal();
             await Swal.fire({
@@ -123,7 +163,8 @@ class AdminAdd extends HTMLElement {
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                                    <select id="category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                                    <select id="category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required>
+                                        <option value="">Seleccione una categoría</option>
                                         <option value="Frontend">Frontend</option>
                                         <option value="Backend">Backend</option>
                                         <option value="Schools">Schools</option>
@@ -133,12 +174,13 @@ class AdminAdd extends HTMLElement {
                                 
                                 <div>
                                     <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                                    <input type="text" id="title" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                                    <input type="text" id="title" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required />
                                 </div>
 
                                 <div>
                                     <label for="level" class="block text-sm font-medium text-gray-700 mb-1">Nivel</label>
-                                    <select id="level" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                                    <select id="level" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required>
+                                        <option value="">Seleccione un nivel</option>
                                         <option value="Beginner">Principiante</option>
                                         <option value="Intermediate">Intermedio</option>
                                         <option value="Advanced">Avanzado</option>
@@ -174,7 +216,12 @@ class AdminAdd extends HTMLElement {
 
                                 <div>
                                     <label for="instructor" class="block text-sm font-medium text-gray-700 mb-1">Instructor</label>
-                                    <input type="text" id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
+                                    <select id="instructor" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required>
+                                        <option value="">Seleccione un instructor</option>
+                                        ${this.teachers.map(teacher => `
+                                            <option value="${teacher.id}">${teacher.name}</option>
+                                        `).join('')}
+                                    </select>
                                 </div>
 
                                 <div>

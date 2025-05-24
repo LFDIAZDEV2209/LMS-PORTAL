@@ -17,18 +17,7 @@ class AdminAddTeacher extends HTMLElement {
     async loadCourses() {
         try {
             const allCourses = await getCourses();
-            // Filtrar solo los cursos que no tienen docentes asignados
-            this.courses = allCourses.filter(course => !course.docenteIds || course.docenteIds.length === 0);
-            
-            if (this.courses.length === 0) {
-                await Swal.fire({
-                    icon: 'info',
-                    title: 'Sin cursos disponibles',
-                    text: 'Todos los cursos ya tienen un profesor asignado.',
-                    confirmButtonText: 'Aceptar',
-                    confirmButtonColor: '#3B82F6'
-                });
-            }
+            this.courses = allCourses;
         } catch (error) {
             console.error("Error loading courses:", error);
             this.courses = [];
@@ -46,7 +35,6 @@ class AdminAddTeacher extends HTMLElement {
             this.saveTeacher();
         });
 
-        // Escuchar el clic en el botón de agregar profesor
         document.querySelector('#addTeacherBtn')?.addEventListener('click', () => {
             this.openModal();
         });
@@ -84,15 +72,12 @@ class AdminAddTeacher extends HTMLElement {
         if (!teacherData.name || teacherData.name.trim() === '') {
             throw new Error('El nombre del profesor es requerido');
         }
-        if (!teacherData.cursoId) {
-            throw new Error('Debe seleccionar un curso');
-        }
         return true;
     }
 
     async saveTeacher() {
         const name = this.querySelector("#name").value.trim();
-        const cursoId = parseInt(this.querySelector("#cursoId").value);
+        const cursoId = this.querySelector("#cursoId").value ? parseInt(this.querySelector("#cursoId").value) : null;
 
         const teacherData = {
             name,
@@ -146,10 +131,10 @@ class AdminAddTeacher extends HTMLElement {
                                 
                                 <div>
                                     <label for="cursoId" class="block text-sm font-medium text-gray-700 mb-1">
-                                        <i class="bi bi-book-fill mr-2"></i>Curso
+                                        <i class="bi bi-book-fill mr-2"></i>Curso (Opcional)
                                     </label>
-                                    <select id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required>
-                                        <option value="">Seleccione un curso</option>
+                                    <select id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                                        <option value="">Sin asignar</option>
                                         ${this.courses.map(course => `
                                             <option value="${course.id}">${course.title}</option>
                                         `).join('')}
