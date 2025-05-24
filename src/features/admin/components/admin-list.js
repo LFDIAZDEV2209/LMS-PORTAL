@@ -225,7 +225,7 @@ class AdminList extends HTMLElement {
     if (totalPages <= 1) return '';
     let buttons = '';
     for (let i = 1; i <= totalPages; i++) {
-      buttons += `<button class="pagination-btn px-3 py-1 mx-1 rounded-lg border ${i === this.currentPage ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}" data-page="${i}">${i}</button>`;
+      buttons += `<button class="pagination-btn cursor-pointer px-3 py-1 mx-1 rounded-lg border ${i === this.currentPage ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}" data-page="${i}">${i}</button>`;
     }
     return `
       <div class="flex justify-center mt-6">

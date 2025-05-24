@@ -115,7 +115,7 @@ class AdminAddTeacher extends HTMLElement {
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-bold text-gray-800">Agregar Nuevo Profesor</h2>
-                            <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+                            <button type="button" class="close-modal cursor-pointer text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
                                 <i class="bi bi-x text-xl"></i>
                             </button>
                         </div>
@@ -143,10 +143,10 @@ class AdminAddTeacher extends HTMLElement {
                             </div>
 
                             <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
-                                <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
+                                <button type="button" class="close-modal cursor-pointer px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
                                     <i class="bi bi-x-lg mr-2"></i>Cancelar
                                 </button>
-                                <button type="button" id="saveTeacher" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+                                <button type="button" id="saveTeacher" class="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
                                     <i class="bi bi-check-lg mr-2"></i>Guardar Profesor
                                 </button>
                             </div>

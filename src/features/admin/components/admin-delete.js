@@ -94,7 +94,7 @@ class AdminDelete extends HTMLElement {
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-6">
                             <h2 class="text-xl font-bold text-gray-800">Eliminar Curso</h2>
-                            <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+                            <button type="button" class="close-modal cursor-pointer text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
                                 <i class="bi bi-x text-xl"></i>
                             </button>
                         </div>
@@ -109,10 +109,10 @@ class AdminDelete extends HTMLElement {
                             </div>
                             
                             <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
-                                <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
+                                <button type="button" class="close-modal cursor-pointer px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
                                     Cancelar
                                 </button>
-                                <button type="button" id="confirmDelete" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200">
+                                <button type="button" id="confirmDelete" class="cursor-pointer px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200">
                                     Eliminar
                                 </button>
                             </div>

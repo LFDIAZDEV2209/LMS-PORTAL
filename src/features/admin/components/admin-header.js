@@ -51,7 +51,7 @@ class AdminHeader extends HTMLElement {
                         class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none"
                     />
                 </div>
-                <button id="addCourseBtn" class="w-full sm:w-10 h-10 rounded-lg sm:rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
+                <button id="addCourseBtn" class="cursor-pointer w-full sm:w-10 h-10 rounded-lg sm:rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
                     <i class="bi bi-plus text-xl"></i>
                     <span class="sm:hidden ml-2">Agregar Curso</span>
                 </button>
@@ -62,11 +62,11 @@ class AdminHeader extends HTMLElement {
                     <span class="text-gray-700">Filtrar por categoría:</span>
                 </div>
                 <div class="flex flex-wrap justify-center sm:inline-flex gap-2">
-                    <button class="btn-category bg-gray-200 text-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="all">Todos</button>
-                    <button class="btn-category bg-gray-200 text-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Video Games">Videojuegos</button>
-                    <button class="btn-category bg-gray-200 text-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Backend">Backend</button>
-                    <button class="btn-category bg-gray-200 text-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Frontend">Frontend</button>
-                    <button class="btn-category bg-gray-200 text-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Schools">Escuelas</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="all">Todos</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Video Games">Videojuegos</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Backend">Backend</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Frontend">Frontend</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Schools">Escuelas</button>
                 </div>
             </div>
         </div>
