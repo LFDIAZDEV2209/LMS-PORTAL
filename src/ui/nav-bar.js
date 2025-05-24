@@ -1,12 +1,36 @@
+import { getUser } from "../services/userServices";
+
 class NavBar extends HTMLElement {
     constructor() {
         super();
+        this.handleUserNameChanged = this.handleUserNameChanged.bind(this);
     }
 
     connectedCallback() {
         this.render();
+        this.setUserName();
+        window.addEventListener("userNameChanged", this.handleUserNameChanged);
     }
-    
+
+    disconnectedCallback() {
+        window.removeEventListener("userNameChanged", this.handleUserNameChanged);
+    }
+
+    async setUserName() {
+        try {
+            const user = await getUser("1");
+            const nameSpan = this.querySelector("span.text-sm");
+            if (nameSpan) nameSpan.textContent = user.name || "John Doe";
+        } catch {
+            // Si falla, deja el nombre por defecto
+        }
+    }
+
+    handleUserNameChanged(e) {
+        const nameSpan = this.querySelector("span.text-sm");
+        if (nameSpan) nameSpan.textContent = e.detail.name;
+    }
+
     render() {
         this.innerHTML = `
             <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500">
