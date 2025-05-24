@@ -31,11 +31,10 @@ export class AppEnrolled extends HTMLElement {
                                 <div class="h-full w-[50%] bg-green-500 rounded-r-lg"></div>
                             </div>
                             <div class="px-6 pt-3">
-                                <div class="py-1 gap-4"> 
+                                <div class="py-1 gap-4 border-b-1 border-black/20"> 
                                     <h4 class="font-semibold text-base font-sans">${course.title}</h4>
                                     <p  class="opacity-50 pb-2 text-sm">${course.instructor}</p>
                                 </div>
-                                <hr>
                                 <div class="flex justify-between py-4">
                                     <span class="text-green-400">65% complete</span>
                                     <span>13/24 Lessons</span>
