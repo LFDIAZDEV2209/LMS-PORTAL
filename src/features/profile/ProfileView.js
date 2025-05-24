@@ -13,7 +13,7 @@ class ProfileView extends HTMLElement {
     const user = await getUser("1");
 
     this.innerHTML = `
-      <div class="profile-view flex flex-col justify-center items-center w-full min-h-screen bg-[#f7fafd] pt-16">
+      <div class="profile-view flex flex-col  justify-center items-center w-full min-h-screen bg-[#f7fafd] pt-16">
         <div class="profile-container bg-white w-full max-w-2xl rounded-xl shadow-lg mt-8 mb-8">
           <div class="bg-gradient-to-r from-[#3498DB] to-[#217dbb] w-full h-40 rounded-t-xl"></div>
           <div class="relative flex flex-col items-center -mt-16 mb-4">
@@ -147,7 +147,7 @@ class ProfileView extends HTMLElement {
       reader.readAsDataURL(file);
     });
 
-    // Guardar cambios
+
     this.querySelector("#profileForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const form = e.target;
@@ -171,7 +171,7 @@ class ProfileView extends HTMLElement {
       }
     });
 
-    // Cancelar y volver a la página principal
+
     this.querySelector("#cancelBtn").addEventListener("click", () => {
       window.location.href = "/";
     });

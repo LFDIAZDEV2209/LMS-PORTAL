@@ -3,7 +3,6 @@ const myHeaders = new Headers({
     'Content-Type': 'application/json',
 });
 
-// Campos requeridos para validación
 const REQUIRED_FIELDS = [
     "name",
     "email",
@@ -15,7 +14,7 @@ const REQUIRED_FIELDS = [
     "expectedGraduation"
 ];
 
-// Valida que los datos tengan solo los campos necesarios y que no falte ninguno requerido
+
 function validateUserData(data) {
     const filtered = {};
     REQUIRED_FIELDS.forEach(field => {
