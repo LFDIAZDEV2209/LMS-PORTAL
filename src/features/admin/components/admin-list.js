@@ -205,9 +205,6 @@ class AdminList extends HTMLElement {
                   </div>
                 </div>
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:gap-4">
-                  <div class="text-left sm:text-right">
-                    <span class="block text-xs text-gray-500">${course.structure.lessons} lecciones</span>
-                  </div>
                   <div class="flex items-center gap-2">
                     <i class="bi bi-pencil-square btnEdit text-gray-500 cursor-pointer hover:text-blue-500 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
                     <i class="bi bi-trash btnDelete text-red-500 cursor-pointer hover:text-red-600 transition duration-200" style="font-size: 1.25rem;" data-id="${course.id}"></i>
@@ -228,7 +225,7 @@ class AdminList extends HTMLElement {
     if (totalPages <= 1) return '';
     let buttons = '';
     for (let i = 1; i <= totalPages; i++) {
-      buttons += `<button class="pagination-btn px-3 py-1 mx-1 rounded-lg border ${i === this.currentPage ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}" data-page="${i}">${i}</button>`;
+      buttons += `<button class="pagination-btn cursor-pointer px-3 py-1 mx-1 rounded-lg border ${i === this.currentPage ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}" data-page="${i}">${i}</button>`;
     }
     return `
       <div class="flex justify-center mt-6">

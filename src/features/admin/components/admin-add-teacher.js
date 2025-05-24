@@ -1,13 +1,27 @@
 import { createTeacher } from "../../../services/teacherService.js";
+import { getCourses } from "../../../services/coursesService.js";
+import Swal from 'sweetalert2';
 
 class AdminAddTeacher extends HTMLElement {
     constructor() {
         super();
+        this.courses = [];
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        await this.loadCourses();
         this.render();
         this.setUpEventListeners();
+    }
+
+    async loadCourses() {
+        try {
+            const allCourses = await getCourses();
+            this.courses = allCourses;
+        } catch (error) {
+            console.error("Error loading courses:", error);
+            this.courses = [];
+        }
     }
 
     setUpEventListeners() {
@@ -21,7 +35,6 @@ class AdminAddTeacher extends HTMLElement {
             this.saveTeacher();
         });
 
-        // Escuchar el clic en el botón de agregar profesor
         document.querySelector('#addTeacherBtn')?.addEventListener('click', () => {
             this.openModal();
         });
@@ -55,19 +68,43 @@ class AdminAddTeacher extends HTMLElement {
         }
     }
 
+    validateTeacherData(teacherData) {
+        if (!teacherData.name || teacherData.name.trim() === '') {
+            throw new Error('El nombre del profesor es requerido');
+        }
+        return true;
+    }
+
     async saveTeacher() {
+        const name = this.querySelector("#name").value.trim();
+        const cursoId = this.querySelector("#cursoId").value ? parseInt(this.querySelector("#cursoId").value) : null;
+
         const teacherData = {
-            name: this.querySelector("#name").value,
-            cursoId: parseInt(this.querySelector("#cursoId").value)
+            name,
+            cursoId
         };
 
         try {
+            this.validateTeacherData(teacherData);
             await createTeacher(teacherData);
             this.closeModal();
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'El profesor ha sido creado correctamente',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
             window.location.reload();
         } catch (error) {
             console.error("Error saving teacher:", error);
-            alert('Error al crear el profesor. Por favor, intente nuevamente.');
+            await Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'Error al crear el profesor. Por favor, intente nuevamente.',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
         }
     }
 
@@ -78,7 +115,7 @@ class AdminAddTeacher extends HTMLElement {
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <h2 class="text-xl font-bold text-gray-800">Agregar Nuevo Profesor</h2>
-                            <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+                            <button type="button" class="close-modal cursor-pointer text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
                                 <i class="bi bi-x text-xl"></i>
                             </button>
                         </div>
@@ -94,17 +131,22 @@ class AdminAddTeacher extends HTMLElement {
                                 
                                 <div>
                                     <label for="cursoId" class="block text-sm font-medium text-gray-700 mb-1">
-                                        <i class="bi bi-book-fill mr-2"></i>ID del Curso
+                                        <i class="bi bi-book-fill mr-2"></i>Curso (Opcional)
                                     </label>
-                                    <input type="number" id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required />
+                                    <select id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
+                                        <option value="">Sin asignar</option>
+                                        ${this.courses.map(course => `
+                                            <option value="${course.id}">${course.title}</option>
+                                        `).join('')}
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
-                                <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
+                                <button type="button" class="close-modal cursor-pointer px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
                                     <i class="bi bi-x-lg mr-2"></i>Cancelar
                                 </button>
-                                <button type="button" id="saveTeacher" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+                                <button type="button" id="saveTeacher" class="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
                                     <i class="bi bi-check-lg mr-2"></i>Guardar Profesor
                                 </button>
                             </div>

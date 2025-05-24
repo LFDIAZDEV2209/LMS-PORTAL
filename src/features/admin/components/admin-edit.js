@@ -1,7 +1,7 @@
 import { putCourse } from "../../../services/coursesService.js";
 import { getCourseById } from "../../../services/coursesService.js";
 import { getTeachers } from "../../../services/teacherService.js";
-
+import Swal from 'sweetalert2';
 class AdminEdit extends HTMLElement {
   constructor() {
     super();
@@ -148,6 +148,13 @@ class AdminEdit extends HTMLElement {
 
     try {
       await putCourse(updatedCourse, this.course.id);
+      await Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Los cambios se han guardado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
 
       this.dispatchEvent(
         new CustomEvent("course-updated", {
@@ -158,6 +165,13 @@ class AdminEdit extends HTMLElement {
       this.closeModal();
     } catch (error) {
       console.error("Error saving changes:", error);
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message || 'Error al guardar los cambios. Por favor, intente nuevamente.',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
     }
   }
 
@@ -168,7 +182,7 @@ class AdminEdit extends HTMLElement {
           <div class="p-6 flex-shrink-0">
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-xl font-bold text-gray-800">Editar Curso</h2>
-              <button type="button" class="close-modal text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+              <button type="button" class="close-modal cursor-pointer text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
                 <i class="bi bi-x text-xl"></i>
               </button>
             </div>
@@ -249,10 +263,10 @@ class AdminEdit extends HTMLElement {
           
           <div class="flex-shrink-0 p-6 border-t border-gray-100">
             <div class="flex justify-end space-x-3">
-              <button type="button" class="close-modal px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
+              <button type="button" class="close-modal cursor-pointer px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-200">
                 Cancelar
               </button>
-              <button type="button" id="saveChanges" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+              <button type="button" id="saveChanges" class="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
                 Guardar Cambios
               </button>
             </div>

@@ -84,7 +84,7 @@ class AdminTeacherDashboard extends HTMLElement {
             <div class="bg-white rounded-xl shadow-sm p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center space-x-4">
-                        <button id="backToListBtn" class="mr-4 text-blue-600 hover:text-blue-800 focus:outline-none transition-colors" title="Regresar a la lista">
+                        <button id="backToListBtn" class="mr-4 cursor-pointer text-blue-600 hover:text-blue-800 focus:outline-none transition-colors" title="Regresar a la lista">
                             <i class="bi bi-arrow-left-circle text-2xl"></i>
                         </button>
                         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">

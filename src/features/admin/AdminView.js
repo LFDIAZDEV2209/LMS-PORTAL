@@ -1,3 +1,6 @@
+import { getTeachers } from "../../services/teacherService.js";
+import Swal from "sweetalert2";
+
 class AdminView extends HTMLElement {
   constructor() {
     super();
@@ -54,7 +57,13 @@ class AdminView extends HTMLElement {
     const teacherId = teacherIdSelect.value;
 
     if (!teacherId) {
-      alert('Por favor, seleccione un profesor');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, seleccione un profesor',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
       return;
     }
 
@@ -79,7 +88,7 @@ class AdminView extends HTMLElement {
         <div class="flex justify-between items-center mt-6 mb-4">
           <h2 class="text-xl font-semibold text-gray-800">Cursos</h2>
           <div class="flex gap-2">
-            <button id="addTeacherBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200">
+            <button id="addTeacherBtn" class="cursor-pointer px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200">
               <i class="bi bi-person-plus mr-2"></i>Agregar Profesor
             </button>
           </div>
@@ -98,7 +107,7 @@ class AdminView extends HTMLElement {
               </select>
             </div>
             <div class="flex items-end">
-              <button id="viewTeacherDashboard" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+              <button id="viewTeacherDashboard" class="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
                 <i class="bi bi-speedometer2 mr-2"></i>Ver Panel
               </button>
             </div>
@@ -120,8 +129,7 @@ class AdminView extends HTMLElement {
 
   async loadTeachers() {
     try {
-      const response = await fetch('http://localhost:3000/docentes');
-      const teachers = await response.json();
+      const teachers = await getTeachers();
       
       const select = this.querySelector('#teacherId');
       if (select) {
