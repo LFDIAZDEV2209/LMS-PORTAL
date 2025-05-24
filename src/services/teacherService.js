@@ -115,37 +115,9 @@ const createTeacher = async (teacher) => {
   }
 };
 
-const assignTeacherToCourse = async (teacherId, courseId) => {
-  try {
-    // Primero obtenemos el curso actual
-    const courseResponse = await fetch(`${API_URL}/cursos/${courseId}`);
-    if (!courseResponse.ok) {
-      throw new Error(`Error fetching course: ${courseResponse.statusText}`);
-    }
-    const course = await courseResponse.json();
-    
-    // Actualizamos la lista de docentes
-    const updatedTeachers = [...(course.docenteIds || []), teacherId];
-    
-    const updateResponse = await fetch(`${API_URL}/cursos/${courseId}`, {
-      method: 'PATCH',
-      headers: myHeaders,
-      body: JSON.stringify({ docenteIds: updatedTeachers }),
-    });
-    if (!updateResponse.ok) {
-      throw new Error(`Error updating course: ${updateResponse.statusText}`);
-    }
-    return await updateResponse.json();
-  } catch (error) {
-    console.error("Error assigning teacher to course:", error);
-    throw error;
-  }
-};
-
 export {
   getTeachers,
   getTeacherWithCourses,
   createTeacher,
-  assignTeacherToCourse
 };
 

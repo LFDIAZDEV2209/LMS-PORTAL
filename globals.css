@@ -44,7 +44,6 @@
   }
 }
 
-/* Si usas Tailwind, puedes usar directamente las utilidades en JS */
 .active-nav-btn {
   background-color: #3e5263;
   color: #5fa8e6;

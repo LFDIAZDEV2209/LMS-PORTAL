@@ -215,39 +215,6 @@ const getCourseTasks = async (courseId) => {
   }
 };
 
-const enrollStudent = async (studentId, courseId) => {
-  try {
-    const response = await fetch(`${API_URL}/matricula`, {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify({
-        studentId,
-        cursoId: courseId,
-        fechaRegistro: new Date().toISOString(),
-      }),
-    });
-    if (!response.ok) {
-      throw new Error(`Error enrolling student: ${response.statusText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error enrolling student:", error);
-    throw error;
-  }
-};
-
-const getTopicsByCourseId = async (courseId) => {
-  const res = await fetch(`${API_URL}/topics?courseId=${courseId}`);
-  if (!res.ok) throw new Error("Error fetching topics");
-  return await res.json();
-};
-
-export const getCourseByTitle = async (title) => {
-  const res = await fetch(`${API_URL}/courses?title=${encodeURIComponent(title)}`);
-  if (!res.ok) throw new Error("Error fetching course by title");
-  return await res.json(); // Devuelve un array de cursos que coinciden con el título
-};
-
 export {
   getCourses,
   getCourseById,
@@ -256,8 +223,5 @@ export {
   putCourse,
   deleteCourse,
   getCourseWithModules,
-  getCourseTasks,
-  enrollStudent,
-  getTopicsByCourseId,
-  
+  getCourseTasks
 };

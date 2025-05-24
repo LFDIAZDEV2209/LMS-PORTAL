@@ -118,14 +118,14 @@ class CourseContent extends HTMLElement {
   getResourceIcon(icon) {
     switch (icon) {
       case 'syllabus':
-        return `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`;
+        return `<i class="bi bi-journal-text text-blue-500"></i>`;
       case 'setup':
       case 'guide':
-        return `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-orange-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+        return `<i class="bi bi-tools text-orange-500"></i>`;
       case 'checklist':
-        return `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+        return `<i class="bi bi-check2-circle text-green-500"></i>`;
       default:
-        return `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`;
+        return `<i class="bi bi-journal"></i>`;
     }
   }
 
@@ -148,7 +148,7 @@ class CourseContent extends HTMLElement {
         } mr-3 rounded-full p-1 h-7 w-7 flex items-center justify-center font-light">
           ${
             topic.completed
-              ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
+              ? `<i class='bi bi-check-circle-fill'></i>`
               : idx + 1
           }
         </div>
@@ -227,16 +227,16 @@ class CourseContent extends HTMLElement {
               class="md:px-4 md:py-2 m-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center prev-button ${this.selectedTopicId === 1 ? 'opacity-50 cursor-not-allowed' : ''}"
               ${this.selectedTopicId === 1 ? 'disabled' : ''}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              Previous Topic
+              <i class="bi bi-arrow-left"></i>
+              <span class="ml-1">Previous Topic</span>
             </button>
 
             ${selectedTopic.completed 
               ? `<button class=" md:w-50 md:h-15 w-25 h-15 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors complete-button">
-                    Completed
+                    <i class="bi bi-check-circle-fill mr-2"></i>Completed
                  </button>` 
               : `<button class="md:w-50 md:h-15 w-25 h-15 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors complete-button">
-                    Mark as Complete
+                    <i class="bi bi-check2-circle mr-2"></i>Mark as Complete
                  </button>`
             }
 
@@ -244,8 +244,8 @@ class CourseContent extends HTMLElement {
               class="md:px-4 md:py-2 m-2 border border-amber-500 text-amber-600 rounded hover:bg-amber-50 transition-colors flex items-center next-button ${this.selectedTopicId === this.topics.length ? 'opacity-50 cursor-not-allowed' : ''}"
               ${this.selectedTopicId === this.topics.length ? 'disabled' : ''}
             >
-              Next Topic
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <span class="mr-1">Next Topic</span>
+              <i class="bi bi-arrow-right"></i>
             </button>
           </div>
         </div>
@@ -257,7 +257,7 @@ class CourseContent extends HTMLElement {
         <!-- Header with back button -->
         <div class=" p-4 border-b border-gray-200">
           <a  a href="/courses" data-link class="px-3 py-1 md:m-2 text-sm text-blue-500  hover:bg-amber-50 transition-colors back-button">
-            ← Back to Courses
+            <i class="bi bi-arrow-left"></i> Back to Courses
           </a>
         </div>
 

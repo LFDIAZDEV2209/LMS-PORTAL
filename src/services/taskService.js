@@ -29,36 +29,7 @@ const getTaskById = async (id) => {
   }
 };
 
-const getTasksByCourse = async (courseId) => {
-  try {
-    const response = await fetch(`${API_URL}/task?cursoId=${courseId}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching tasks: ${response.statusText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching tasks:", error);
-    throw error;
-  }
-};
-
-const getTasksByModule = async (moduleId) => {
-  try {
-    const response = await fetch(`${API_URL}/task?moduloId=${moduleId}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching tasks: ${response.statusText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching tasks:", error);
-    throw error;
-  }
-};
-
-
 export {
   getTasks,
   getTaskById,
-  getTasksByCourse,
-  getTasksByModule,
 }; 

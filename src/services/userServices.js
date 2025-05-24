@@ -44,22 +44,3 @@ export const updateUser = async (userId, userData) => {
     return response.json();
 };
 
-export const createUser = async (userData) => {
-    const validData = validateUserData(userData);
-    const response = await fetch(`${API_URL}/estudiantes`, {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(validData),
-    });
-    if (!response.ok) throw new Error("Error creating user");
-    return response.json();
-};
-
-export const deleteUser = async (userId) => {
-    const response = await fetch(`${API_URL}/estudiantes/${userId}`, {
-        method: 'DELETE',
-        headers: myHeaders,
-    });
-    if (!response.ok) throw new Error("Error deleting user");
-    return true;
-};

@@ -100,10 +100,7 @@ class CoursesView extends HTMLElement {
             <p>${course.level}</p>
           </div>
           <div class="absolute top-3 right-3 bg-black/60 text-white text-base px-3 py-2 rounded-full flex items-center">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
+            <i class="bi bi-clock-history w-2 h-2 mr-3 mb-4"></i>
             ${course.duration}
           </div>
         </div>
