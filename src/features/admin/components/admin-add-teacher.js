@@ -1,5 +1,6 @@
 import { createTeacher } from "../../../services/teacherService.js";
 import { getCourses } from "../../../services/coursesService.js";
+import Swal from 'sweetalert2';
 
 class AdminAddTeacher extends HTMLElement {
     constructor() {
@@ -15,7 +16,19 @@ class AdminAddTeacher extends HTMLElement {
 
     async loadCourses() {
         try {
-            this.courses = await getCourses();
+            const allCourses = await getCourses();
+            // Filtrar solo los cursos que no tienen docentes asignados
+            this.courses = allCourses.filter(course => !course.docenteIds || course.docenteIds.length === 0);
+            
+            if (this.courses.length === 0) {
+                await Swal.fire({
+                    icon: 'info',
+                    title: 'Sin cursos disponibles',
+                    text: 'Todos los cursos ya tienen un profesor asignado.',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#3B82F6'
+                });
+            }
         } catch (error) {
             console.error("Error loading courses:", error);
             this.courses = [];
@@ -67,19 +80,46 @@ class AdminAddTeacher extends HTMLElement {
         }
     }
 
+    validateTeacherData(teacherData) {
+        if (!teacherData.name || teacherData.name.trim() === '') {
+            throw new Error('El nombre del profesor es requerido');
+        }
+        if (!teacherData.cursoId) {
+            throw new Error('Debe seleccionar un curso');
+        }
+        return true;
+    }
+
     async saveTeacher() {
+        const name = this.querySelector("#name").value.trim();
+        const cursoId = parseInt(this.querySelector("#cursoId").value);
+
         const teacherData = {
-            name: this.querySelector("#name").value,
-            cursoId: parseInt(this.querySelector("#cursoId").value)
+            name,
+            cursoId
         };
 
         try {
+            this.validateTeacherData(teacherData);
             await createTeacher(teacherData);
             this.closeModal();
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'El profesor ha sido creado correctamente',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
             window.location.reload();
         } catch (error) {
             console.error("Error saving teacher:", error);
-            alert('Error al crear el profesor. Por favor, intente nuevamente.');
+            await Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'Error al crear el profesor. Por favor, intente nuevamente.',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
         }
     }
 

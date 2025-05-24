@@ -1,3 +1,6 @@
+import { getTeachers } from "../../services/teacherService.js";
+import Swal from "sweetalert2";
+
 class AdminView extends HTMLElement {
   constructor() {
     super();
@@ -54,7 +57,13 @@ class AdminView extends HTMLElement {
     const teacherId = teacherIdSelect.value;
 
     if (!teacherId) {
-      alert('Por favor, seleccione un profesor');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, seleccione un profesor',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
       return;
     }
 
@@ -120,8 +129,7 @@ class AdminView extends HTMLElement {
 
   async loadTeachers() {
     try {
-      const response = await fetch('http://localhost:3000/docentes');
-      const teachers = await response.json();
+      const teachers = await getTeachers();
       
       const select = this.querySelector('#teacherId');
       if (select) {
