@@ -1,4 +1,5 @@
 import { postCourse } from "../../../services/coursesService.js";
+import Swal from 'sweetalert2';
 
 class AdminAdd extends HTMLElement {
     constructor() {
@@ -86,10 +87,23 @@ class AdminAdd extends HTMLElement {
         try {
             await postCourse(courseData);
             this.closeModal();
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'El curso ha sido creado correctamente',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
             window.location.reload();
         } catch (error) {
             console.error("Error saving course:", error);
-            alert('Error al crear el curso. Por favor, intente nuevamente.');
+            await Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'Error al crear el curso. Por favor, intente nuevamente.',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
         }
     }
 

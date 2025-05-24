@@ -1,7 +1,7 @@
 import { putCourse } from "../../../services/coursesService.js";
 import { getCourseById } from "../../../services/coursesService.js";
 import { getTeachers } from "../../../services/teacherService.js";
-
+import Swal from 'sweetalert2';
 class AdminEdit extends HTMLElement {
   constructor() {
     super();
@@ -148,6 +148,13 @@ class AdminEdit extends HTMLElement {
 
     try {
       await putCourse(updatedCourse, this.course.id);
+      await Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Los cambios se han guardado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
 
       this.dispatchEvent(
         new CustomEvent("course-updated", {
@@ -158,6 +165,13 @@ class AdminEdit extends HTMLElement {
       this.closeModal();
     } catch (error) {
       console.error("Error saving changes:", error);
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message || 'Error al guardar los cambios. Por favor, intente nuevamente.',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
     }
   }
 

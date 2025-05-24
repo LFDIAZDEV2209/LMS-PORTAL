@@ -1,5 +1,5 @@
 import { deleteCourse } from "../../../services/coursesService.js";
-
+import Swal from 'sweetalert2';
 class AdminDelete extends HTMLElement {
     constructor() {
         super();
@@ -66,12 +66,24 @@ class AdminDelete extends HTMLElement {
             console.log('Curso eliminado exitosamente:', deletedId);
             
             this.closeModal();
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'El curso ha sido eliminado correctamente',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
             // Recargar la página después de eliminar
             window.location.reload();
-            
         } catch (error) {
             console.error("Error deleting course:", error);
-            alert('No se pudo eliminar el curso. Por favor, intente nuevamente.');
+            await Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'No se pudo eliminar el curso. Por favor, intente nuevamente.',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3B82F6'
+            });
         }
     }
 
