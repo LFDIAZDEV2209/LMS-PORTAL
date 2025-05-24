@@ -1,13 +1,25 @@
 import { createTeacher } from "../../../services/teacherService.js";
+import { getCourses } from "../../../services/coursesService.js";
 
 class AdminAddTeacher extends HTMLElement {
     constructor() {
         super();
+        this.courses = [];
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        await this.loadCourses();
         this.render();
         this.setUpEventListeners();
+    }
+
+    async loadCourses() {
+        try {
+            this.courses = await getCourses();
+        } catch (error) {
+            console.error("Error loading courses:", error);
+            this.courses = [];
+        }
     }
 
     setUpEventListeners() {
@@ -94,9 +106,14 @@ class AdminAddTeacher extends HTMLElement {
                                 
                                 <div>
                                     <label for="cursoId" class="block text-sm font-medium text-gray-700 mb-1">
-                                        <i class="bi bi-book-fill mr-2"></i>ID del Curso
+                                        <i class="bi bi-book-fill mr-2"></i>Curso
                                     </label>
-                                    <input type="number" id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required />
+                                    <select id="cursoId" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" required>
+                                        <option value="">Seleccione un curso</option>
+                                        ${this.courses.map(course => `
+                                            <option value="${course.id}">${course.title}</option>
+                                        `).join('')}
+                                    </select>
                                 </div>
                             </div>
 
