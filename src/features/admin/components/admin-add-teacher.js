@@ -196,6 +196,9 @@ class AdminAddTeacher extends HTMLElement {
                                 <select id="course" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none">
                                     <option value="">Seleccione un curso...</option>
                                 </select>
+                                <p class="text-sm text-gray-500 mt-2 ml-2">
+                                    Si el curso a que deseas asignar el profesor ya tiene un profesor asignado, puedes reemplazarlo editando el curso.
+                                </p>
                             </div>
                         </form>
                     </div>
