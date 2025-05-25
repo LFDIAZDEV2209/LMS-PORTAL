@@ -74,7 +74,7 @@ El auge de la educación en línea exige plataformas robustas, flexibles y perso
 ## 👨‍💻 Equipo de Desarrollo
 
 - **Luis Felipe Diaz Correa** ([LFDIAZDEV2209](https://github.com/LFDIAZDEV2209))  
-- **Jorge Cristancho Olarte**
+- [**Jorge Cristancho Olarte**](https://github.com/jcristancho2)
 - **Sheyla Esther Samur**
 - **Leidy Johanna Villegas**
 

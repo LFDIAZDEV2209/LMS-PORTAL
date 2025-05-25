@@ -1,1 +1,50 @@
 @import 'tailwindcss';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply font-['Inter'] text-[#2a322d] bg-[#f4f5f5] text-base font-normal leading-[150%] h-full antialiased subpixel-antialiased;
+  }
+
+  /* Estilos base para todos los componentes */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-900;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg sm:text-xl;
+  }
+
+  h6 {
+    @apply text-base sm:text-lg;
+  }
+}
+
+.active-nav-btn {
+  background-color: #3e5263;
+  color: #5fa8e6;
+} 
