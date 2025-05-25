@@ -1,7 +1,8 @@
 import { putCourse } from "../../../services/coursesService.js";
 import { getCourseById } from "../../../services/coursesService.js";
-import { getTeachers } from "../../../services/teacherService.js";
+import { getTeachers, assignTeacherToCourse, unassignTeacherFromCourse } from "../../../services/teacherService.js";
 import Swal from 'sweetalert2';
+
 class AdminEdit extends HTMLElement {
   constructor() {
     super();
@@ -12,7 +13,6 @@ class AdminEdit extends HTMLElement {
   connectedCallback() {
     this.render();
     this.setUpEventListeners();
-    this.loadTeachers();
   }
 
   setUpEventListeners() {
@@ -25,6 +25,61 @@ class AdminEdit extends HTMLElement {
     this.querySelector('#saveChanges').addEventListener('click', () => {
       this.saveChanges();
     });
+
+    // Agregar listener para el cambio de instructor
+    this.querySelector('#instructor')?.addEventListener('change', (e) => {
+      this.handleInstructorChange(e.target.value);
+    });
+  }
+
+  async handleInstructorChange(newTeacherId) {
+    if (!this.course || !this.course.id) return;
+
+    try {
+      const currentTeacherId = this.course.instructorId;
+      let replaced = false;
+      
+      // Si hay un profesor actual asignado y se selecciona uno diferente, primero lo desasignamos
+      if (currentTeacherId && currentTeacherId !== newTeacherId) {
+        await unassignTeacherFromCourse(currentTeacherId, this.course.id);
+        replaced = true;
+      }
+
+      // Si se seleccionó un nuevo profesor, lo asignamos
+      if (newTeacherId) {
+        await assignTeacherToCourse(newTeacherId, this.course.id);
+      }
+
+      // Actualizar el curso localmente
+      this.course.instructorId = newTeacherId;
+
+      if (replaced) {
+        await Swal.fire({
+          icon: 'warning',
+          title: 'Profesor reemplazado',
+          text: 'Has reemplazado al profesor anterior por uno nuevo en este curso.',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3B82F6'
+        });
+      } else {
+        await Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'El instructor ha sido actualizado correctamente',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3B82F6'
+        });
+      }
+    } catch (error) {
+      console.error("Error updating instructor:", error);
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message || 'Error al actualizar el instructor. Por favor, intente nuevamente.',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B82F6'
+      });
+    }
   }
 
   async openModal(courseId) {
@@ -36,6 +91,7 @@ class AdminEdit extends HTMLElement {
         return;
       }
 
+      await this.loadTeachers();
       this.populateFields();
 
       const modalContainer = this.querySelector(".modal-backdrop");
@@ -82,10 +138,32 @@ class AdminEdit extends HTMLElement {
   populateTeacherSelect() {
     const select = this.querySelector("#instructor");
     if (select) {
-      this.teachers.forEach(teacher => {
+      // Limpiar opciones existentes
+      select.innerHTML = '<option value="">Seleccione un instructor...</option>';
+      
+      // Filtrar profesores disponibles (sin curso asignado o el curso actual)
+      let availableTeachers = this.teachers.filter(teacher => 
+        !teacher.cursoId || teacher.cursoId === this.course?.id
+      );
+
+      // Si el curso tiene instructor asignado y no está en la lista, agregarlo
+      if (this.course?.instructorId) {
+        const alreadyInList = availableTeachers.some(t => t.id === this.course.instructorId);
+        if (!alreadyInList) {
+          const assignedTeacher = this.teachers.find(t => t.id === this.course.instructorId);
+          if (assignedTeacher) {
+            availableTeachers = [assignedTeacher, ...availableTeachers];
+          }
+        }
+      }
+
+      availableTeachers.forEach(teacher => {
         const option = document.createElement("option");
         option.value = teacher.id;
         option.textContent = teacher.name;
+        if (teacher.id === this.course?.instructorId) {
+          option.selected = true;
+        }
         select.appendChild(option);
       });
     }
