@@ -86,7 +86,7 @@ const putCourse = async (course, id) => {
         ...courseData,
         moduloIds: courseData.moduloIds || [],
         estudianteIds: courseData.estudianteIds || [],
-        docenteIds: courseData.docenteIds || [],
+        instructorId: courseData.instructorId || [],
         taskIds: courseData.taskIds || []
       }),
     });
