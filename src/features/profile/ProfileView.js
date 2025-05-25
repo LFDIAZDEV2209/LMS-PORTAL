@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { getUser, updateUser } from "../../services/userServices";
 
 class ProfileView extends HTMLElement {
@@ -9,12 +10,26 @@ class ProfileView extends HTMLElement {
     this.render();
   }
 
+  /*Validacion----------------------------------------------------*/
+    validateData(userData) {
+
+        if (!courseData.title || courseData.title.trim() === '') {
+            throw new Error('El título del curso es requerido');
+        }
+        if (!courseData.category) {
+            throw new Error('Debe seleccionar una categoría');
+        }
+        if (!courseData.level) {
+            throw new Error('Debe seleccionar un nivel');
+        }
+      }
+
   async render() {
     const user = await getUser("1");
 
     this.innerHTML = `
-      <div class="profile-view flex flex-col  justify-center items-center w-full min-h-screen bg-[#f7fafd] pt-16">
-        <div class="profile-container bg-white w-full max-w-2xl rounded-xl shadow-lg mt-8 mb-8">
+      <div class="profile-view flex flex-col  justify-center items-center w-full min-h-screen bg-[#f7fafd] pt-0">
+        <div class="profile-container bg-white w-full max-w-2xl rounded-xl shadow-lg mt-0 mb-8">
           <div class="bg-gradient-to-r from-[#3498DB] to-[#217dbb] w-full h-40 rounded-t-xl"></div>
           <div class="relative flex flex-col items-center -mt-16 mb-4">
             <div class="bg-[#CCCCCC] w-[120px] h-[120px] rounded-full border-4 border-white overflow-hidden shadow-lg relative z-20">
@@ -38,19 +53,19 @@ class ProfileView extends HTMLElement {
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label for="name" class="text-[#666666] text-sm md:text-base">Full Name</label>
-                  <input type="text" name="name" value="${user.name || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="name" value="${user.name || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="email" class="text-[#666666] text-sm md:text-base">Email</label>
-                  <input type="text" name="email" value="${user.email || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="email" value="${user.email || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="phone" class="text-[#666666] text-sm md:text-base">Phone</label>
-                  <input type="text" name="phone" value="${user.phone || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="phone" value="${user.phone || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="location" class="text-[#666666] text-sm md:text-base">Location</label>
-                  <input type="text" name="location" value="${user.location || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="location" value="${user.location || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
               </div>
             </div>
@@ -59,19 +74,19 @@ class ProfileView extends HTMLElement {
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label for="studentId" class="text-[#666666] text-sm md:text-base">Student ID</label>
-                  <input type="text" name="studentId" value="${user.studentId || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="studentId" value="${user.studentId || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="program" class="text-[#666666] text-sm md:text-base">Program</label>
-                  <input type="text" name="program" value="${user.program || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="program" value="${user.program || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="startDate" class="text-[#666666] text-sm md:text-base">Start Date</label>
-                  <input type="text" name="startDate" value="${user.startDate || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="startDate" value="${user.startDate || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
                 <div>
                   <label for="expectedGraduation" class="text-[#666666] text-sm md:text-base">Expected Graduation</label>
-                  <input type="text" name="expectedGraduation" value="${user.expectedGraduation || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm" />
+                  <input type="text" name="expectedGraduation" value="${user.expectedGraduation || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
                 </div>
               </div>
             </div>
@@ -146,8 +161,7 @@ class ProfileView extends HTMLElement {
       };
       reader.readAsDataURL(file);
     });
-
-
+    
     this.querySelector("#profileForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const form = e.target;
@@ -163,11 +177,24 @@ class ProfileView extends HTMLElement {
         profilePicture: profilePictureBase64
       };
       try {
+
         await updateUser("1", userData);
         window.dispatchEvent(new CustomEvent("userNameChanged", { detail: { name: userData.name } }));
-        alert("Datos guardados correctamente");
+        await Swal.fire({
+          icon:'success',
+          title:'¡Éxito!',
+          text: 'Datos guardados correctamente',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3B82F6'
+        });
       } catch (err) {
-        alert("Error al guardar: " + err.message);
+        await Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: err.message || 'Error al guardar',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3B82F6'
+        });
       }
     });
 
