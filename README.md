@@ -5,6 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
 [![Git Flow](https://img.shields.io/badge/Git_Flow-F05032?style=for-the-badge&logo=git&logoColor=white)](https://github.com/nvie/gitflow)
+[![Netlify](https://img.shields.io/badge/Netlify-deployed-status?style=for-the-badge&logo=netlify&logoColor=white)](https://lms-portal-web.netlify.app)
 
 ---
 
@@ -92,8 +93,9 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 ---
 
-## 📥 Instalación y Uso
+## 📥 Instalación y Uso 
 
+### 🏠 Localmente
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/LFDIAZDEV2209/LMS-PORTAL.git
@@ -111,6 +113,10 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
    npx json-server --watch db.json --port 3001
    ```
 5. Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+### 🔗 Online
+
+ Abre [LMS-PORTAL-WEB](https://lms-portal-web.netlify.app) en tu navegador.
 
 ---
 
