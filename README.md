@@ -93,8 +93,9 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 ---
 
-## 📥 Instalación y Uso
+## 📥 Instalación y Uso 
 
+### 🏠 Localmente
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/LFDIAZDEV2209/LMS-PORTAL.git
@@ -112,6 +113,10 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
    npx json-server --watch db.json --port 3001
    ```
 5. Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+### 🔗 Online
+
+ Abre [LMS-PORTAL-WEB](https://lms-portal-web.netlify.app) en tu navegador.
 
 ---
 
