@@ -5,6 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
 [![Git Flow](https://img.shields.io/badge/Git_Flow-F05032?style=for-the-badge&logo=git&logoColor=white)](https://github.com/nvie/gitflow)
+[![Netlify](https://img.shields.io/badge/Netlify-deployed-status?style=for-the-badge&logo=netlify&logoColor=white)](https://app.netlify.com/projects/lms-portal-web/deploys)
 
 ---
 
