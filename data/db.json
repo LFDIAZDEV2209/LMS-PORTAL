@@ -1,0 +1,1492 @@
+{
+    "cursos": [
+      {
+        "id": "1",
+        "category": "Video Games",
+        "title": "Unity Game Development",
+        "imageUrl": "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
+        "level": "Intermediate",
+        "duration": "12 weeks",
+        "enrolled": 250,
+        "overview": "Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Basic programming knowledge in any language.",
+          "Understanding of 3D geometry is helpful but not required."
+        ],
+        "learningOutcomes": [
+          "Build complete 3D games",
+          "master C# programming",
+          "implement game physics",
+          "create engaging UI systems",
+          "optimize game performance"
+        ],
+        "structure": {
+          "lessons": 5,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "estudianteIds": [
+          1
+        ],
+        "taskIds": [
+          1,
+          2
+        ],
+        "instructorId": "1"
+      },
+      {
+        "id": "2",
+        "category": "Video Games",
+        "title": "Unreal Engine Basics",
+        "imageUrl": "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg",
+        "level": "Beginner",
+        "duration": "8 weeks",
+        "enrolled": 250,
+        "overview": "Master the fundamentals of Unreal Engine 5. Cover Blueprint visual scripting, level design, and game optimization.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "No prior experience required",
+          "Basic computer skills and understanding of gaming concepts recommended."
+        ],
+        "learningOutcomes": [
+          "Create basic games using Blueprints",
+          "Design game levels",
+          "Implement basic AI",
+          "Understand game optimization techniques"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "estudianteIds": [],
+        "taskIds": [
+          3,
+          4
+        ],
+        "instructorId": "2"
+      },
+      {
+        "id": "3",
+        "category": "Video Games",
+        "title": "Game Design Principles",
+        "imageUrl": "https://images.pexels.com/photos/7915579/pexels-photo-7915579.jpeg",
+        "level": "All Levels",
+        "duration": "10 weeks",
+        "enrolled": 250,
+        "overview": "Learn essential game design concepts including mechanics, dynamics, aesthetics, and player psychology.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "No technical prerequisites",
+          "Passion for games and creative thinking required."
+        ],
+        "learningOutcomes": [
+          "Design engaging game mechanics",
+          "Balance gameplay",
+          "Create compelling narratives",
+          "Understand player psychology"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "estudianteIds": [],
+        "taskIds": [
+          5
+        ],
+        "instructorId": "3"
+      },
+      {
+        "id": "4",
+        "category": "Backend",
+        "title": "Node.js Development",
+        "imageUrl": "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg",
+        "level": "Advanced",
+        "duration": "14 weeks",
+        "enrolled": 250,
+        "overview": "Build high-performance backend services with Node.js. Cover Express.js, MongoDB, and microservices architecture.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Strong JavaScript knowledge",
+          "Basic understanding of backend development and databases"
+        ],
+        "learningOutcomes": [
+          "Build scalable APIs",
+          "Implement authentication",
+          "Handle database operations",
+          "Deploy microservices"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          13,
+          14,
+          15,
+          16
+        ],
+        "estudianteIds": [],
+        "taskIds": [
+          6
+        ],
+        "instructorId": "4"
+      },
+      {
+        "id": "5",
+        "category": "Backend",
+        "title": "Database Design",
+        "imageUrl": "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg",
+        "level": "Intermediate",
+        "duration": "10 weeks",
+        "enrolled": 250,
+        "overview": "Comprehensive guide to database design. Learn SQL, NoSQL, data modeling, and performance optimization.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Basic understanding of programming concepts",
+          "Basic understanding of data structures"
+        ],
+        "learningOutcomes": [
+          "Design efficient databases",
+          "Write complex queries",
+          "Optimize performance",
+          "Handle large datasets"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          17,
+          18,
+          19,
+          20
+        ],
+        "estudianteIds": [],
+        "taskIds": [
+          7
+        ],
+        "instructorId": "5"
+      },
+      {
+        "id": "6",
+        "category": "Backend",
+        "title": "API Development",
+        "imageUrl": "https://images.pexels.com/photos/251225/pexels-photo-251225.jpeg",
+        "level": "Intermediate",
+        "duration": "8 weeks",
+        "enrolled": 250,
+        "overview": "Create robust APIs using REST and GraphQL. Focus on security, documentation, and best practices.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Experience with web development",
+          "Basic understanding of HTTP protocols"
+        ],
+        "learningOutcomes": [
+          "Design RESTful APIs",
+          "Implement GraphQL",
+          "Secure endpoints",
+          "Create comprehensive documentation"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          21,
+          22,
+          23,
+          24
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": "33f7"
+      },
+      {
+        "id": "7",
+        "category": "Frontend",
+        "title": "React Mastery",
+        "imageUrl": "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg",
+        "level": "Advanced",
+        "duration": "12 weeks",
+        "enrolled": 250,
+        "overview": "Advanced React concepts including hooks, context, Redux, and performance optimization techniques.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Strong JavaScript knowledge",
+          "Experience with React basics"
+        ],
+        "learningOutcomes": [
+          "Master advanced React patterns",
+          "State management",
+          "Performance optimization",
+          "Testing strategies"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          25,
+          26,
+          27,
+          28
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": "8495"
+      },
+      {
+        "id": "8",
+        "category": "Frontend",
+        "title": "Angular Advanced",
+        "imageUrl": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+        "level": "Advanced",
+        "duration": "14 weeks",
+        "enrolled": 250,
+        "overview": "Deep dive into Angular framework. Cover state management, testing, and enterprise patterns.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Experience with Angular basics",
+          "Experience with TypeScript"
+        ],
+        "learningOutcomes": [
+          "Implement complex state management",
+          "Write comprehensive tests",
+          "Build enterprise applications"
+        ],
+        "structure": {
+          "lessons": 0,
+          "projects": 0,
+          "assignments": 0,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          29,
+          30,
+          31,
+          32
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": "3c02"
+      },
+      {
+        "id": "9",
+        "category": "Frontend",
+        "title": "CSS Architecture",
+        "imageUrl": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+        "level": "Intermediate",
+        "duration": "6 weeks",
+        "enrolled": 250,
+        "overview": "Learn to build maintainable CSS at scale using modern methodologies and tools.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Strong understanding of CSS basics",
+          "Experience with responsive design"
+        ],
+        "learningOutcomes": [
+          "Design scalable CSS architectures",
+          "Implement modern CSS features",
+          "Optimize performance"
+        ],
+        "structure": [
+          "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project."
+        ],
+        "moduloIds": [
+          33,
+          34,
+          35,
+          36
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": ""
+      },
+      {
+        "id": "10",
+        "category": "Schools",
+        "title": "Mathematics 101",
+        "imageUrl": "https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg",
+        "level": "Beginner",
+        "duration": "16 weeks",
+        "enrolled": 250,
+        "overview": "Introduction to core mathematical concepts including algebra, calculus, and probability theory.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "High school mathematics or equivalent"
+        ],
+        "learningOutcomes": [
+          "Master fundamental mathematical concepts",
+          "Solve complex problems",
+          "Apply mathematical thinking"
+        ],
+        "structure": {
+          "lessons": 32,
+          "projects": 5,
+          "assignments": 4,
+          "capstoneProject": 1
+        },
+        "moduloIds": [
+          37,
+          38,
+          39,
+          40
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": ""
+      },
+      {
+        "id": "11",
+        "category": "Schools",
+        "title": "Physics Basics",
+        "imageUrl": "https://images.pexels.com/photos/60582/newton-s-cradle-balls-sphere-action-60582.jpeg",
+        "level": "Beginner",
+        "duration": "16 weeks",
+        "enrolled": 250,
+        "overview": "Explore fundamental physics principles including mechanics, thermodynamics, and wave theory.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Basic mathematics knowledge including algebra and trigonometry"
+        ],
+        "learningOutcomes": [
+          "Understand core physics principles",
+          "Solve physics problems",
+          "Conduct basic experiments"
+        ],
+        "structure": [
+          "32 lectures, 16 lab sessions, 8 problem-solving workshops, and a final project."
+        ],
+        "moduloIds": [
+          41,
+          42,
+          43,
+          44
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": ""
+      },
+      {
+        "id": "12",
+        "category": "Schools",
+        "title": "Chemistry Essentials",
+        "imageUrl": "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg",
+        "level": "Beginner",
+        "duration": "16 weeks",
+        "enrolled": 250,
+        "overview": "Learn core chemistry concepts including atomic structure, chemical bonding, and reactions.",
+        "instructor": "Dr. John Smith",
+        "prerequisites": [
+          "Basic understanding of mathematics and scientific notation"
+        ],
+        "learningOutcomes": [
+          "Master fundamental chemistry concepts",
+          "Perform chemical calculations",
+          "Understand lab safety"
+        ],
+        "structure": [
+          "32 lectures, 16 lab sessions, 8 practical assessments, and a final examination."
+        ],
+        "moduloIds": [
+          45,
+          46,
+          47,
+          48
+        ],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": ""
+      },
+      {
+        "id": "1105",
+        "category": "Schools",
+        "title": "erghersh",
+        "level": "Intermediate",
+        "duration": "30 weeks",
+        "overview": "esrthesrh",
+        "instructor": "",
+        "prerequisites": [
+          "holaaaaaaaaaa"
+        ],
+        "learningOutcomes": [
+          "vas",
+          "a",
+          "ser",
+          "la",
+          "monda"
+        ],
+        "structure": {
+          "lessons": 3,
+          "projects": 4,
+          "assignments": 4,
+          "capstoneProject": 4
+        },
+        "imageUrl": "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
+        "moduloIds": [],
+        "estudianteIds": [],
+        "taskIds": [],
+        "instructorId": "8495"
+      }
+    ],
+    "modulos": [
+      {
+        "id": "1",
+        "cursoId": 1,
+        "title": "Introducción a Unity",
+        "topics": [
+          "Qué es Unity",
+          "Instalación y configuración",
+          "Primer proyecto"
+        ]
+      },
+      {
+        "id": "2",
+        "cursoId": 1,
+        "title": "Fundamentos de C#",
+        "topics": [
+          "Sintaxis básica",
+          "Variables y tipos",
+          "Estructuras de control"
+        ]
+      },
+      {
+        "id": "3",
+        "cursoId": 1,
+        "title": "Sistema de Física",
+        "topics": [
+          "Colisiones y físicas",
+          "Gravedad y fuerzas",
+          "Interacción entre objetos"
+        ]
+      },
+      {
+        "id": "4",
+        "cursoId": 1,
+        "title": "Interfaz de Usuario",
+        "topics": [
+          "Creación de menús",
+          "Elementos UI en Unity",
+          "Animaciones de UI"
+        ]
+      },
+      {
+        "id": "5",
+        "cursoId": 2,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "6",
+        "cursoId": 2,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "7",
+        "cursoId": 2,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "8",
+        "cursoId": 2,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "9",
+        "cursoId": 3,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "10",
+        "cursoId": 3,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "11",
+        "cursoId": 3,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "12",
+        "cursoId": 3,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "13",
+        "cursoId": 4,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "14",
+        "cursoId": 4,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "15",
+        "cursoId": 4,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "16",
+        "cursoId": 4,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "17",
+        "cursoId": 5,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "18",
+        "cursoId": 5,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "19",
+        "cursoId": 5,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "20",
+        "cursoId": 5,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "21",
+        "cursoId": 6,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "22",
+        "cursoId": 6,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "23",
+        "cursoId": 6,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "24",
+        "cursoId": 6,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "25",
+        "cursoId": 7,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "26",
+        "cursoId": 7,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "27",
+        "cursoId": 7,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "28",
+        "cursoId": 7,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "29",
+        "cursoId": 8,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "30",
+        "cursoId": 8,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "31",
+        "cursoId": 8,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "32",
+        "cursoId": 8,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "33",
+        "cursoId": 9,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "34",
+        "cursoId": 9,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "35",
+        "cursoId": 9,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "36",
+        "cursoId": 9,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "37",
+        "cursoId": 10,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "38",
+        "cursoId": 10,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "39",
+        "cursoId": 10,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "40",
+        "cursoId": 10,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "41",
+        "cursoId": 11,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "42",
+        "cursoId": 11,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "43",
+        "cursoId": 11,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "44",
+        "cursoId": 11,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      },
+      {
+        "id": "45",
+        "cursoId": 12,
+        "title": "Introduction to the Course",
+        "topics": [
+          "Course overview and objectives",
+          "Setting up your development environment",
+          "Understanding the course structure"
+        ]
+      },
+      {
+        "id": "46",
+        "cursoId": 12,
+        "title": "Fundamentals and Core Concepts",
+        "topics": [
+          "Basic principles and terminology",
+          "Essential tools and frameworks",
+          "Best practices and conventions"
+        ]
+      },
+      {
+        "id": "47",
+        "cursoId": 12,
+        "title": "Advanced Topics",
+        "topics": [
+          "Advanced techniques and patterns",
+          "Performance optimization",
+          "Real-world applications"
+        ]
+      },
+      {
+        "id": "48",
+        "cursoId": 12,
+        "title": "Project Work",
+        "topics": [
+          "Planning and requirements gathering",
+          "Implementation and coding",
+          "Testing and deployment"
+        ]
+      }
+    ],
+    "estudiantes": [
+      {
+        "name": "uyfjytf",
+        "email": "76ir7i6df",
+        "phone": "jtdjyrd",
+        "location": "ytdjyrd",
+        "studentId": "CS2023001",
+        "program": "uk6df76r",
+        "startDate": "utfyutf",
+        "expectedGraduation": "lhiuh",
+        "id": "1"
+      }
+    ],
+    "matricula": [
+      {
+        "id": "1",
+        "studentId": 1,
+        "cursoId": 1
+      }
+    ],
+    "docentes": [
+      {
+        "id": "1",
+        "name": "Dr. John Smith",
+        "cursoId": "1"
+      },
+      {
+        "id": "2",
+        "name": "Prof. Sarah Johnson",
+        "cursoId": "2"
+      },
+      {
+        "id": "3",
+        "name": "Dr. Michael Chen",
+        "cursoId": "3"
+      },
+      {
+        "id": "4",
+        "name": "Prof. Emily Brown",
+        "cursoId": "4"
+      },
+      {
+        "id": "5",
+        "name": "Dr. Robert Wilson",
+        "cursoId": "5"
+      },
+      {
+        "id": "33f7",
+        "name": "wwefgerwgerg",
+        "cursoId": "6"
+      },
+      {
+        "id": "8495",
+        "name": "Pipe",
+        "cursoId": "7"
+      },
+      {
+        "id": "3c02",
+        "name": "sdgdsrgdg",
+        "cursoId": "8"
+      }
+    ],
+    "task": [
+      {
+        "id": "1",
+        "cursoId": "1",
+        "moduloId": "1",
+        "title": "Unity Game Development Project",
+        "courseName": "Unity Game Development",
+        "description": "Create a complete 3D game using Unity. Implement character movement, physics interactions, and basic game mechanics. The project should include level design, UI elements, and sound effects.",
+        "dueDate": "2024-03-14",
+        "status": "pending",
+        "type": "Project",
+        "points": 100,
+        "requiredModules": [
+          "Unity Basics",
+          "Game Physics",
+          "UI Design"
+        ],
+        "attachments": 2,
+        "prerequisiteCompletion": 100,
+        "submitted": false
+      },
+      {
+        "id": "2",
+        "cursoId": "1",
+        "moduloId": "2",
+        "title": "Physics System Implementation",
+        "courseName": "Unity Game Development",
+        "description": "Implement a complete physics system for your game. Include gravity, collisions, and interactive objects. Create a demonstration level showcasing all physics features.",
+        "dueDate": "2024-03-19",
+        "status": "locked",
+        "type": "Project",
+        "points": 150,
+        "requiredModules": [
+          "Game Physics",
+          "Level Design"
+        ],
+        "attachments": 1,
+        "prerequisiteCompletion": 60,
+        "submitted": false
+      },
+      {
+        "id": "3",
+        "cursoId": "2",
+        "moduloId": "5",
+        "title": "Unreal Engine First Project",
+        "courseName": "Unreal Engine Basics",
+        "description": "Set up and create your first Unreal Engine project. Implement basic Blueprint scripting, create a simple level, and add basic game mechanics. Document your development process.",
+        "dueDate": "2024-02-27",
+        "status": "completed",
+        "type": "Project",
+        "points": 80,
+        "requiredModules": [
+          "Unreal Basics",
+          "Blueprint Programming"
+        ],
+        "attachments": 3,
+        "prerequisiteCompletion": 100,
+        "submitted": true
+      },
+      {
+        "id": "4",
+        "cursoId": "4",
+        "moduloId": "13",
+        "title": "Node.js API Development",
+        "courseName": "Node.js Development",
+        "description": "Develop a RESTful API using Node.js and Express. Implement user authentication, database integration with MongoDB, and proper error handling. Include API documentation and unit tests.",
+        "dueDate": "2024-03-20",
+        "status": "pending",
+        "type": "Project",
+        "points": 150,
+        "requiredModules": [
+          "Node.js Basics",
+          "Express Framework",
+          "MongoDB Integration"
+        ],
+        "attachments": 2,
+        "prerequisiteCompletion": 100,
+        "submitted": false
+      },
+      {
+        "id": "5",
+        "cursoId": "5",
+        "moduloId": "17",
+        "title": "Database Design Project",
+        "courseName": "Database Design",
+        "description": "Design and implement a complete database system for an e-commerce platform. Create normalized schemas, write complex queries, and implement data validation. Include performance optimization strategies.",
+        "dueDate": "2024-03-25",
+        "status": "locked",
+        "type": "Project",
+        "points": 120,
+        "requiredModules": [
+          "SQL Basics",
+          "Database Normalization",
+          "Query Optimization"
+        ],
+        "attachments": 1,
+        "prerequisiteCompletion": 75,
+        "submitted": false
+      },
+      {
+        "id": "6",
+        "cursoId": "7",
+        "moduloId": "25",
+        "title": "React E-commerce Frontend",
+        "courseName": "React Mastery",
+        "description": "Build a complete e-commerce frontend using React. Implement state management with Redux, create reusable components, and add responsive design. Include user authentication and shopping cart functionality.",
+        "dueDate": "2024-03-28",
+        "status": "pending",
+        "type": "Project",
+        "points": 200,
+        "requiredModules": [
+          "React Hooks",
+          "Redux",
+          "Component Design"
+        ],
+        "attachments": 3,
+        "prerequisiteCompletion": 100,
+        "submitted": false
+      },
+      {
+        "id": "7",
+        "cursoId": "8",
+        "moduloId": "29",
+        "title": "Angular Dashboard Application",
+        "courseName": "Angular Advanced",
+        "description": "Create a comprehensive dashboard application using Angular. Implement lazy loading, state management with NgRx, and real-time data updates. Include data visualization and user role management.",
+        "dueDate": "2024-04-01",
+        "status": "locked",
+        "type": "Project",
+        "points": 180,
+        "requiredModules": [
+          "Angular Core",
+          "NgRx",
+          "TypeScript"
+        ],
+        "attachments": 2,
+        "prerequisiteCompletion": 80,
+        "submitted": false
+      },
+      {
+        "id": "8",
+        "cursoId": "10",
+        "moduloId": "37",
+        "title": "Mathematics Problem Set",
+        "courseName": "Mathematics 101",
+        "description": "Complete a comprehensive problem set covering algebra, calculus, and probability. Include detailed solutions and explanations for each problem. Demonstrate understanding of mathematical concepts and their applications.",
+        "dueDate": "2024-03-15",
+        "status": "pending",
+        "type": "Assignment",
+        "points": 100,
+        "requiredModules": [
+          "Algebra",
+          "Calculus",
+          "Probability"
+        ],
+        "attachments": 1,
+        "prerequisiteCompletion": 100,
+        "submitted": false
+      },
+      {
+        "id": "9",
+        "cursoId": "11",
+        "moduloId": "41",
+        "title": "Physics Lab Report",
+        "courseName": "Physics Basics",
+        "description": "Conduct and document a series of physics experiments. Include data collection, analysis, and conclusions. Cover topics in mechanics, thermodynamics, and wave theory. Present findings with proper scientific methodology.",
+        "dueDate": "2024-03-18",
+        "status": "locked",
+        "type": "Report",
+        "points": 150,
+        "requiredModules": [
+          "Mechanics",
+          "Thermodynamics",
+          "Wave Theory"
+        ],
+        "attachments": 2,
+        "prerequisiteCompletion": 60,
+        "submitted": false
+      },
+      {
+        "id": "10",
+        "cursoId": "12",
+        "moduloId": "45",
+        "title": "Chemistry Experiment Analysis",
+        "courseName": "Chemistry Essentials",
+        "description": "Perform and analyze chemical reactions. Document the process, observations, and results. Include safety procedures, chemical equations, and theoretical explanations. Create a comprehensive lab report with data visualization.",
+        "dueDate": "2024-03-22",
+        "status": "pending",
+        "type": "Report",
+        "points": 120,
+        "requiredModules": [
+          "Chemical Reactions",
+          "Lab Safety",
+          "Data Analysis"
+        ],
+        "attachments": 3,
+        "prerequisiteCompletion": 90,
+        "submitted": false
+      }
+    ],
+    "todo": [
+      {
+        "id": "1",
+        "taskId": "1",
+        "studentId": "1",
+        "estado": "pending",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "2",
+        "taskId": "2",
+        "studentId": "1",
+        "estado": "locked",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "3",
+        "taskId": "3",
+        "studentId": "1",
+        "estado": "completed",
+        "submitted": true,
+        "submissionDate": "2024-02-25",
+        "grade": 85
+      },
+      {
+        "id": "4",
+        "taskId": "4",
+        "studentId": "1",
+        "estado": "pending",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "5",
+        "taskId": "5",
+        "studentId": "1",
+        "estado": "locked",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "6",
+        "taskId": "6",
+        "studentId": "1",
+        "estado": "pending",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "7",
+        "taskId": "7",
+        "studentId": "1",
+        "estado": "locked",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "8",
+        "taskId": "8",
+        "studentId": "1",
+        "estado": "pending",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "9",
+        "taskId": "9",
+        "studentId": "1",
+        "estado": "locked",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      },
+      {
+        "id": "10",
+        "taskId": "10",
+        "studentId": "1",
+        "estado": "pending",
+        "submitted": false,
+        "submissionDate": null,
+        "grade": null
+      }
+    ],
+    "topics": [
+      {
+        "id": "1",
+        "title": "Introduction to the Course",
+        "overview": "Overview of what you will learn in this course and how to get the most out of it.",
+        "resources": {
+          "title": "Additional Resources",
+          "items": [
+            {
+              "icon": "📄",
+              "name": "Course Syllabus"
+            },
+            {
+              "icon": "📝",
+              "name": "Setup Instructions"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2",
+        "title": "Getting Started with Tools",
+        "overview": "Learn about the essential tools and software you'll need for this course.",
+        "resources": {
+          "title": "Additional Resources",
+          "items": [
+            {
+              "icon": "📄",
+              "name": "Tools Checklist"
+            },
+            {
+              "icon": "📝",
+              "name": "Installation Guide"
+            }
+          ]
+        }
+      },
+      {
+        "id": "3",
+        "title": "Core Concepts",
+        "overview": "Understanding the fundamental concepts and principles.",
+        "resources": {
+          "title": "Additional Resources",
+          "items": [
+            {
+              "icon": "📄",
+              "name": "Concept Map"
+            },
+            {
+              "icon": "📝",
+              "name": "Practice Exercises"
+            }
+          ]
+        }
+      },
+      {
+        "id": "4",
+        "title": "Advanced Techniques",
+        "overview": "Diving deep into advanced topics and methodologies.",
+        "resources": {
+          "title": "Additional Resources",
+          "items": [
+            {
+              "icon": "📄",
+              "name": "Advanced Guide"
+            },
+            {
+              "icon": "💻",
+              "name": "Code Examples"
+            }
+          ]
+        }
+      }
+    ],
+    "progress": [
+      {
+        "id": "2",
+        "title": "Web Development",
+        "overview": "Core concepts and tools for building modern websites, including HTML, CSS, JavaScript, and frontend frameworks.",
+        "progress": "80%",
+        "imageUrl": "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg",
+        "subtopics": [
+          {
+            "title": "HTML Fundamentals",
+            "overview": "Basic structure, elements, and semantic markup.",
+            "progress": "100%"
+          },
+          {
+            "title": "CSS Styling",
+            "overview": "Selectors, properties, layouts, and responsive design.",
+            "progress": "85%"
+          },
+          {
+            "title": "JavaScript Basics",
+            "overview": "Variables, functions, DOM manipulation.",
+            "progress": "75%"
+          },
+          {
+            "title": "Frontend Frameworks",
+            "overview": "Introduction to modern frameworks and libraries.",
+            "progress": "60%"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Data Science",
+        "overview": "Key skills and tools for analyzing data, building models, and communicating insights effectively.",
+        "progress": "60%",
+        "imageUrl": "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg",
+        "subtopics": [
+          {
+            "title": "Python Programming",
+            "overview": "Basic syntax, data structures, and functions.",
+            "progress": "90%"
+          },
+          {
+            "title": "Data Analysis",
+            "overview": "Working with pandas and numpy.",
+            "progress": "70%"
+          },
+          {
+            "title": "Machine Learning",
+            "overview": "Basic algorithms and model training.",
+            "progress": "45%"
+          },
+          {
+            "title": "Data Visualization",
+            "overview": "Creating charts and interactive visualizations.",
+            "progress": "35%"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "title": "Mobile Development",
+        "overview": "Learn how to design, build, and publish mobile applications using modern tools and frameworks.",
+        "progress": "45%",
+        "imageUrl": "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg",
+        "subtopics": [
+          {
+            "title": "Mobile UI Design",
+            "overview": "Principles of mobile interface design.",
+            "progress": "80%"
+          },
+          {
+            "title": "React Native Basics",
+            "overview": "Components, navigation, and state management.",
+            "progress": "55%"
+          },
+          {
+            "title": "Native APIs",
+            "overview": "Camera, location, and device features.",
+            "progress": "30%"
+          },
+          {
+            "title": "App Publishing",
+            "overview": "Preparing and deploying to app stores.",
+            "progress": "15%"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "title": "Cloud Computing",
+        "overview": "Foundations and practical knowledge for leveraging cloud platforms, including service models, AWS, and serverless technologies.",
+        "progress": "30%",
+        "imageUrl": "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg",
+        "subtopics": [
+          {
+            "title": "Cloud Fundamentals",
+            "overview": "Basic concepts and service models.",
+            "progress": "100%"
+          },
+          {
+            "title": "AWS Services",
+            "overview": "EC2, S3, and core AWS services.",
+            "progress": "40%"
+          },
+          {
+            "title": "Cloud Security",
+            "overview": "Security best practices and implementation.",
+            "progress": "25%"
+          },
+          {
+            "title": "Serverless Computing",
+            "overview": "Lambda functions and serverless architecture.",
+            "progress": "15%"
+          }
+        ]
+      }
+    ]
+  }
