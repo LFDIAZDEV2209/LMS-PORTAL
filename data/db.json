@@ -21,12 +21,9 @@
           "create engaging UI systems",
           "optimize game performance"
         ],
-        "structure": {
-          "lessons": 5,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project."
+      ],
         "moduloIds": [
           1,
           2,
@@ -62,12 +59,9 @@
           "Implement basic AI",
           "Understand game optimization techniques"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "16 lessons, 8 practical exercises, 4 mini-projects, and a final game project."
+      ],
         "moduloIds": [
           5,
           6,
@@ -101,12 +95,9 @@
           "Create compelling narratives",
           "Understand player psychology"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "20 theory lessons, 10 design workshops, 5 game analysis projects, and a final game design document."
+      ],
         "moduloIds": [
           9,
           10,
@@ -139,12 +130,9 @@
           "Handle database operations",
           "Deploy microservices"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "28 lessons, 14 coding projects, 4 major applications, and a final system architecture project."
+      ],
         "moduloIds": [
           13,
           14,
@@ -177,12 +165,9 @@
           "Optimize performance",
           "Handle large datasets"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "20 lectures, 10 practical sessions, 5 database design projects, and a final optimization challenge."
+      ],
         "moduloIds": [
           17,
           18,
@@ -215,12 +200,9 @@
           "Secure endpoints",
           "Create comprehensive documentation"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "16 lessons, 8 API projects, 4 security workshops, and a final API gateway project."
+      ],
         "moduloIds": [
           21,
           22,
@@ -251,12 +233,9 @@
           "Performance optimization",
           "Testing strategies"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "24 lessons, 12 advanced projects, 6 optimization workshops, and a final enterprise-level application."
+      ],
         "moduloIds": [
           25,
           26,
@@ -286,12 +265,9 @@
           "Write comprehensive tests",
           "Build enterprise applications"
         ],
-        "structure": {
-          "lessons": 0,
-          "projects": 0,
-          "assignments": 0,
-          "capstoneProject": 1
-        },
+        "structure": [
+        "28 lessons, 14 projects, 7 testing workshops, and a final enterprise application."
+      ],
         "moduloIds": [
           29,
           30,
@@ -322,8 +298,8 @@
           "Optimize performance"
         ],
         "structure": [
-          "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project."
-        ],
+        "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project."
+      ],
         "moduloIds": [
           33,
           34,
@@ -352,12 +328,9 @@
           "Solve complex problems",
           "Apply mathematical thinking"
         ],
-        "structure": {
-          "lessons": 32,
-          "projects": 5,
-          "assignments": 4,
-          "capstoneProject": 1
-        },
+        "structure": [
+          "32 lectures, 16 problem-solving sessions, 8 assessments, and a final examination."
+        ],
         "moduloIds": [
           37,
           38,
