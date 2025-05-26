@@ -121,7 +121,7 @@ class CoursesView extends HTMLElement {
           <h4 class="pb-2 font-medium">What You'll Learn</h4>
           <p class="pb-2 text-[#7a8582]">${course.learningOutcomes}</p>
           <h4 class="pb-2 font-medium">Course Structure</h4>
-          <p class="pb-2 text-[#7a8582]">${course.structure}</p>
+          <p class="pb-2 text-[#7a8582]">${Array.isArray(course.structure) ? course.structure[0] : course.structure}</p>
         </div>
         <a class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-xl text-sm font-medium close-info-btn mt-4 text-center" href="javascript:void(0);">CLOSE</a>
       </div>

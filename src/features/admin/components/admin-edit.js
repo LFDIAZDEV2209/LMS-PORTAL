@@ -188,9 +188,11 @@ class AdminEdit extends HTMLElement {
     this.querySelector("#learningOutcomes").value = Array.isArray(this.course.learningOutcomes)
       ? this.course.learningOutcomes.join("\n")
       : "";
-    this.querySelector("#lessons").value = this.course.structure?.lessons || "";
-    this.querySelector("#projects").value = this.course.structure?.projects || "";
-    this.querySelector("#assignments").value = this.course.structure?.assignments || "";
+    this.querySelector("#structure").value = Array.isArray(this.course.structure) 
+      ? this.course.structure[0] 
+      : (typeof this.course.structure === 'object' 
+          ? `${this.course.structure.lessons} lecciones, ${this.course.structure.projects} proyectos, ${this.course.structure.assignments} tareas y ${this.course.structure.capstoneProject} proyecto final`
+          : this.course.structure || "");
   }
 
   async saveChanges() {
@@ -216,12 +218,7 @@ class AdminEdit extends HTMLElement {
         .value.split("\n")
         .map(item => item.trim())
         .filter(item => item),
-      structure: {
-        lessons: parseInt(this.querySelector("#lessons").value) || 0,
-        projects: parseInt(this.querySelector("#projects").value) || 0,
-        assignments: parseInt(this.querySelector("#assignments").value) || 0,
-        capstoneProject: this.course.structure?.capstoneProject || 1
-      }
+      structure: this.querySelector("#structure").value.trim()
     };
 
     try {
@@ -320,21 +317,9 @@ class AdminEdit extends HTMLElement {
                 <textarea id="learningOutcomes" rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none" placeholder="Un resultado por línea"></textarea>
               </div>
 
-              <div class="grid grid-cols-3 gap-4">
-                <div>
-                  <label for="lessons" class="block text-sm font-medium text-gray-700 mb-1">Lecciones</label>
-                  <input type="number" id="lessons" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                </div>
-                
-                <div>
-                  <label for="projects" class="block text-sm font-medium text-gray-700 mb-1">Proyectos</label>
-                  <input type="number" id="projects" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                </div>
-                
-                <div>
-                  <label for="assignments" class="block text-sm font-medium text-gray-700 mb-1">Tareas</label>
-                  <input type="number" id="assignments" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                </div>
+              <div>
+                <label for="structure" class="block text-sm font-medium text-gray-700 mb-1">Estructura del Curso</label>
+                <textarea id="structure" rows="4" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none" placeholder="Describe la estructura del curso (ej: 24 lecciones interactivas, 12 proyectos prácticos, 4 tareas principales y un proyecto final)"></textarea>
               </div>
             </form>
           </div>
