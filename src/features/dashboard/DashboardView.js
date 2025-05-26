@@ -9,7 +9,7 @@ class DashboardView extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="bg-gray-100 min-h-screen p-8 py-">
+      <div class="bg-gray-100 min-h-screen">
         <h1 class="text-5xl font-semibold text-[#2C3E50] pt-2">Dashboard</h1>
         <dashboard-card></dashboard-card>
         <app-enrolled></app-enrolled>

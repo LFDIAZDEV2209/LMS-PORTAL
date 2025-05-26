@@ -33,8 +33,8 @@ class NavBar extends HTMLElement {
 
     render() {
         this.innerHTML = `
-            <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500">
-                <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+            <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500 w-full">
+                <div class="mx-auto flex justify-between items-center relative">
                     <div class="flex flex-col font-bold text-2xl leading-5 mr-6 select-none">
                         <span>LMS</span>
                         <span>Portal</span>
@@ -74,7 +74,7 @@ class NavBar extends HTMLElement {
                                 <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center border-2 border-white">
                                     <i class="bi bi-person-fill text-gray-400 text-lg"></i>
                                 </div>
-                                <div class="flex flex-col leading-4 text-sm font-medium ml-1 text-left">
+                                <div class="flex flex-col leading-4 text-sm font-medium ml-3 text-center">
                                     <span>John</span>
                                     <span>Doe</span>
                                 </div>

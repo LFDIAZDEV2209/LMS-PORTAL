@@ -7,11 +7,11 @@
 
 @layer base {
   html {
-    @apply h-full;
+    @apply h-full overflow-x-hidden;
   }
   
   body {
-    @apply font-['Inter'] text-[#2a322d] bg-[#f4f5f5] text-base font-normal leading-[150%] h-full antialiased subpixel-antialiased;
+    @apply font-['Inter'] text-[#2a322d] bg-[#f4f5f5] text-base font-normal leading-[150%] h-full antialiased subpixel-antialiased overflow-x-hidden;
   }
 
   /* Estilos base para todos los componentes */
