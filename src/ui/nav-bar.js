@@ -33,7 +33,7 @@ class NavBar extends HTMLElement {
 
     render() {
         this.innerHTML = `
-            <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500">
+            <nav id="navbar" class="bg-[#344350] text-white py-6 px-9 transition-colors duration-500 w-full">
                 <div class="max-w-7xl mx-auto flex justify-between items-center relative">
                     <div class="flex flex-col font-bold text-2xl leading-5 mr-6 select-none">
                         <span>LMS</span>
