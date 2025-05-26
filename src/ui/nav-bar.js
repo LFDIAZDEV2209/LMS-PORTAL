@@ -74,7 +74,7 @@ class NavBar extends HTMLElement {
                                 <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center border-2 border-white">
                                     <i class="bi bi-person-fill text-gray-400 text-lg"></i>
                                 </div>
-                                <div class="flex flex-col leading-4 text-sm font-medium ml-1 text-left">
+                                <div class="flex flex-col leading-4 text-sm font-medium ml-3 text-center">
                                     <span>John</span>
                                     <span>Doe</span>
                                 </div>
