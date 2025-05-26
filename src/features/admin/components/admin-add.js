@@ -92,9 +92,8 @@ class AdminAdd extends HTMLElement {
         if (courseData.duration && !/^\d+\s*(weeks?|months?|days?)$/i.test(courseData.duration)) {
             throw new Error('La duración debe estar en formato válido (ej: 16 weeks, 3 months)');
         }
-        if (courseData.structure.lessons < 0 || courseData.structure.projects < 0 || 
-            courseData.structure.assignments < 0 || courseData.structure.capstoneProject < 0) {
-            throw new Error('Los valores de la estructura del curso no pueden ser negativos');
+        if (!courseData.structure || courseData.structure.trim() === '') {
+            throw new Error('Debe proporcionar una descripción de la estructura del curso');
         }
         return true;
     }
@@ -118,12 +117,7 @@ class AdminAdd extends HTMLElement {
             instructor: this.querySelector("#instructor").value,
             prerequisites: this.querySelector("#prerequisites").value.split(',').map(item => item.trim()),
             learningOutcomes: this.querySelector("#learningOutcomes").value.split(',').map(item => item.trim()),
-            structure: {
-                lessons: parseInt(this.querySelector("#lessons").value) || 0,
-                projects: parseInt(this.querySelector("#projects").value) || 0,
-                assignments: parseInt(this.querySelector("#assignments").value) || 0,
-                capstoneProject: parseInt(this.querySelector("#capstoneProject").value) || 0
-            },
+            structure: this.querySelector("#structure").value.trim(),
             imageUrl: finalImageUrl
         };
 
@@ -240,24 +234,7 @@ class AdminAdd extends HTMLElement {
 
                                 <div class="col-span-2">
                                     <h3 class="text-lg font-medium text-gray-900 mb-2">Estructura del Curso</h3>
-                                    <div class="grid grid-cols-4 gap-4">
-                                        <div>
-                                            <label for="lessons" class="block text-sm font-medium text-gray-700 mb-1">Lecciones</label>
-                                            <input type="number" id="lessons" min="0" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                        </div>
-                                        <div>
-                                            <label for="projects" class="block text-sm font-medium text-gray-700 mb-1">Proyectos</label>
-                                            <input type="number" id="projects" min="0" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                        </div>
-                                        <div>
-                                            <label for="assignments" class="block text-sm font-medium text-gray-700 mb-1">Tareas</label>
-                                            <input type="number" id="assignments" min="0" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                        </div>
-                                        <div>
-                                            <label for="capstoneProject" class="block text-sm font-medium text-gray-700 mb-1">Proyecto Final</label>
-                                            <input type="number" id="capstoneProject" min="0" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none" />
-                                        </div>
-                                    </div>
+                                    <textarea id="structure" rows="4" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none resize-none" placeholder="Describe la estructura del curso (ej: 24 lecciones interactivas, 12 proyectos prácticos, 4 tareas principales y un proyecto final)"></textarea>
                                 </div>
                             </div>
 
