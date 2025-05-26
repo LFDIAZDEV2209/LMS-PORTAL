@@ -9,6 +9,14 @@ export default [
       component: 'courses-view'
     },
     {
+      path: '/courses-details',
+      component: 'courses-details'
+    },
+    {
+      path: '/courses-content',
+      component: 'courses-content'
+    },
+    {
       path: '/assignments',
       component: 'assignments-view'
     },

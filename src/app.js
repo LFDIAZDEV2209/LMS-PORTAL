@@ -13,18 +13,6 @@ export function initializeApp() {
     }
   });
   
-  // Cargar estado inicial
-  loadInitialState();
-  
   // Manejar ruta inicial
   router.handleRouting();
-}
-
-async function loadInitialState() {
-  // Aquí cargarías datos iniciales desde tu JSON-server
-  store.setState({
-    user: null,
-    courses: [],
-    isLoading: false
-  });
 }

@@ -1,0 +1,77 @@
+class AdminHeader extends HTMLElement {
+    constructor(){
+        super();
+    }
+
+    connectedCallback(){
+        this.render();
+        this.setUpEventListeners();
+    }
+
+    setUpEventListeners(){
+
+        // Buscador
+        this.querySelector('input').addEventListener('input', (e) => {
+            this.dispatchEvent(new CustomEvent('search', {
+                detail: e.target.value,
+                bubbles: true,
+            }));
+        });
+
+        // Botones de categoría
+        this.querySelectorAll('.btn-category').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                this.dispatchEvent(new CustomEvent('filter', {
+                    detail: btn.dataset.category,
+                    bubbles: true,
+                }));
+                this.querySelectorAll('.btn-category').forEach((b) => {
+                    b.classList.remove('bg-blue-500', 'text-white');
+                    b.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                btn.classList.add('bg-blue-500', 'text-white');
+                btn.classList.remove('bg-gray-200', 'text-gray-800');
+            })
+        })
+    }
+
+    render(){
+        this.innerHTML = `
+        <div class="w-full max-w-4xl mx-auto p-4 sm:p-6 bg-white rounded-xl shadow-sm border-gray-100">
+            <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Administración de Cursos</h1>
+            
+            <div class="relative mb-4 sm:mb-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                <div class="w-full sm:flex-1 relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="bi bi-search text-gray-500"></i>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Buscar curso"
+                        class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none"
+                    />
+                </div>
+                <button id="addCourseBtn" class="cursor-pointer w-full sm:w-10 h-10 rounded-lg sm:rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
+                    <i class="bi bi-plus text-xl"></i>
+                    <span class="sm:hidden ml-2">Agregar Curso</span>
+                </button>
+            </div>
+
+            <div class="mb-4 sm:mb-6">
+                <div class="text-center mb-2 sm:mb-0 sm:inline-block sm:mr-2">
+                    <span class="text-gray-700">Filtrar por categoría:</span>
+                </div>
+                <div class="flex flex-wrap justify-center sm:inline-flex gap-2">
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="all">Todos</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Video Games">Videojuegos</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Backend">Backend</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Frontend">Frontend</button>
+                    <button class="btn-category bg-gray-200 text-gray-800 cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg hover:bg-gray-300 transition duration-200" data-category="Schools">Escuelas</button>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+}
+
+customElements.define('admin-header', AdminHeader);
