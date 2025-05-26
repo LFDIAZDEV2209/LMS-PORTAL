@@ -7,30 +7,48 @@ class ProfileView extends HTMLElement {
   }
 
   connectedCallback() {
+    this.validateData = this.validateData.bind(this);
     this.render();
   }
 
   /*Validacion----------------------------------------------------*/
-    validateData(userData) {
-
-        if (!courseData.title || courseData.title.trim() === '') {
-            throw new Error('El título del curso es requerido');
-        }
-        if (!courseData.category) {
-            throw new Error('Debe seleccionar una categoría');
-        }
-        if (!courseData.level) {
-            throw new Error('Debe seleccionar un nivel');
-        }
-      }
-
+  
+  validateData(userData) {
+    const nameRegex = /^[a-zA-Z\s]{3,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+    const locationRegex = /^[a-zA-Z0-9\s\.\,\-]{3,}$/;
+    const programRegex = /^[a-zA-Z\s]{3,}$/;
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!userData.name || !nameRegex.test(userData.name.trim())) {
+    throw new Error('El nombre debe tener al menos 3 letras y solo contener letras y espacios.');
+  }
+  if (!userData.email || !emailRegex.test(userData.email.trim())) {
+    throw new Error('Debe ingresar un correo electrónico válido.');
+  }
+  if (!userData.phone || !phoneRegex.test(userData.phone.trim())) {
+    throw new Error('Debe ingresar un número de teléfono válido (7 a 15 dígitos).');
+  }
+  if (!userData.location || !locationRegex.test(userData.location.trim())) {
+    throw new Error('Debe ingresar una dirección válida (mínimo 3 caracteres).');
+  }  if (!userData.program || !programRegex.test(userData.program.trim())) {
+    throw new Error('El programa debe tener al menos 3 letras y solo contener letras y espacios.');
+  }
+  if (!userData.startDate || !dateRegex.test(userData.startDate.trim())) {
+    throw new Error('La fecha de inicio debe estar en formato YYYY-MM-DD.');
+  }
+  if (!userData.expectedGraduation || !dateRegex.test(userData.expectedGraduation.trim())) {
+    throw new Error('La fecha de graduación esperada debe estar en formato YYYY-MM-DD.');
+  };
+  }
+  
   async render() {
     const user = await getUser("1");
 
-    this.innerHTML = `
+    this.innerHTML =/*html*/ `
       <div class="profile-view flex flex-col  justify-center items-center w-full min-h-screen bg-[#f7fafd] pt-0">
-        <div class="profile-container bg-white w-full max-w-2xl rounded-xl shadow-lg mt-0 mb-8">
-          <div class="bg-gradient-to-r from-[#3498DB] to-[#217dbb] w-full h-40 rounded-t-xl"></div>
+        <div class="profile-container bg-white w-full max-w-5xl rounded-xl shadow-lg mt-0 mb-8">
+          <div class="bg-gradient-to-r from-[#3492D1] to-slate-800 w-full h-50 rounded-t-xl"></div>
           <div class="relative flex flex-col items-center -mt-16 mb-4">
             <div class="bg-[#CCCCCC] w-[120px] h-[120px] rounded-full border-4 border-white overflow-hidden shadow-lg relative z-20">
               ${user.profilePicture ? 
@@ -52,25 +70,26 @@ class ProfileView extends HTMLElement {
             <h2 class="text-2xl font-semibold text-center pt-2 pb-1 text-[#2C3E50] md:text-3xl">${user.name || 'John Doe'}</h2>
             <p class="text-center text-[#666666] text-base mb-2 md:text-lg">${user.program || 'Computer Science Student'}</p>
           </div>
+          <!---personal information--->
           <form id="profileForm" class="px-8">
             <div class="bg-[#fff] rounded-xl mb-6">
               <h2 class="text-[#2C3E50] text-lg font-medium md:text-xl mb-2">Personal Information</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label for="name" class="text-[#666666] text-sm md:text-base">Full Name</label>
-                  <input type="text" name="name" value="${user.name || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
+                  <input type="text" name="name" value="${user.name || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" id="input_name" />
                 </div>
                 <div>
                   <label for="email" class="text-[#666666] text-sm md:text-base">Email</label>
-                  <input type="text" name="email" value="${user.email || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
+                  <input type="text" name="email" value="${user.email || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" id="input_email" />
                 </div>
                 <div>
                   <label for="phone" class="text-[#666666] text-sm md:text-base">Phone</label>
-                  <input type="text" name="phone" value="${user.phone || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
+                  <input type="text" name="phone" value="${user.phone || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" id="input_phone"/>
                 </div>
                 <div>
                   <label for="location" class="text-[#666666] text-sm md:text-base">Location</label>
-                  <input type="text" name="location" value="${user.location || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
+                  <input type="text" name="location" value="${user.location || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" id="input_location"/>
                 </div>
               </div>
             </div>
@@ -79,7 +98,7 @@ class ProfileView extends HTMLElement {
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label for="studentId" class="text-[#666666] text-sm md:text-base">Student ID</label>
-                  <input type="text" name="studentId" value="${user.studentId || ''}" class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666]" />
+                  <input type="text" name="studentId" value="${user.studentId || ''}" disabled class="w-full px-3 py-2 border border-gray-300 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-[#3498DB] text-sm text-[#666666] cursor{not-allowed}" />
                 </div>
                 <div>
                   <label for="program" class="text-[#666666] text-sm md:text-base">Program</label>
@@ -182,7 +201,7 @@ class ProfileView extends HTMLElement {
         profilePicture: profilePictureBase64
       };
       try {
-
+        this.validateData(userData);
         await updateUser("1", userData);
         window.dispatchEvent(new CustomEvent("userNameChanged", { detail: { name: userData.name } }));
         await Swal.fire({
@@ -196,7 +215,7 @@ class ProfileView extends HTMLElement {
         await Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: err.message || 'Error al guardar',
+          text: err.message || 'Error al guardar. Revise los datos ingresados',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#3B82F6'
         });
