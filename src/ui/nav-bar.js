@@ -71,7 +71,9 @@ class NavBar extends HTMLElement {
                         <!-- User dropdown -->
                         <div class="relative">
                             <button id="user-menu-btn" class="flex items-center gap-2 px-4 py-3 rounded-md transition bg-transparent hover:bg-[#3e5263] focus:outline-none w-full">
-                                <img src="/src/assets/user.jpg" alt="User" class="w-8 h-8 rounded-full object-cover border-2 border-white">
+                                <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center border-2 border-white">
+                                    <i class="bi bi-person-fill text-gray-400 text-lg"></i>
+                                </div>
                                 <div class="flex flex-col leading-4 text-sm font-medium ml-1 text-left">
                                     <span>John</span>
                                     <span>Doe</span>
