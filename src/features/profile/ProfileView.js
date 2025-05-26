@@ -33,7 +33,12 @@ class ProfileView extends HTMLElement {
           <div class="bg-gradient-to-r from-[#3498DB] to-[#217dbb] w-full h-40 rounded-t-xl"></div>
           <div class="relative flex flex-col items-center -mt-16 mb-4">
             <div class="bg-[#CCCCCC] w-[120px] h-[120px] rounded-full border-4 border-white overflow-hidden shadow-lg relative z-20">
-              <img id="profileImg" src="${user.profilePicture || '/src/assets/user.jpg'}" alt="Profile" class="w-full h-full object-cover" />
+              ${user.profilePicture ? 
+                `<img id="profileImg" src="${user.profilePicture}" alt="Profile" class="w-full h-full object-cover" />` :
+                `<div class="w-full h-full flex items-center justify-center bg-gray-200">
+                  <i class="bi bi-person-fill text-gray-400 text-6xl"></i>
+                </div>`
+              }
               <label for="profilePictureInput"
                 class="absolute bottom-0 right-0 bg-[#3498DB] text-white rounded-full p-2 cursor-pointer shadow-md border-4 border-white"
                 title="Change photo"
