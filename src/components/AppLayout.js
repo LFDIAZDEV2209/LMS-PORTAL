@@ -9,7 +9,7 @@ class AppLayout extends HTMLElement {
 
     render() {
         this.innerHTML = `
-            <div class="min-h-screen flex flex-col box-border">
+            <div class="min-h-screen flex flex-col box-border max-w-screen">
                 <nav-bar class="sticky top-0 z-50"></nav-bar>
                 <main id="app" class="flex-1 container mx-auto"> <!-- modificacion para centrar el conendor del seccion  -->
 
