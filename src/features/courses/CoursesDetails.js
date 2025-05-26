@@ -133,6 +133,7 @@ class CoursesDetails extends HTMLElement {
 
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Course Structure</h3>
+                            <p class="text-gray-600 mb-4">${Array.isArray(this.course.structure) ? this.course.structure[0] : this.course.structure}</p>
                             <div class="space-y-4">
                                 ${this.course.modules.map((module, index) => `
                                     <div class="border border-gray-200 rounded-lg overflow-hidden">
